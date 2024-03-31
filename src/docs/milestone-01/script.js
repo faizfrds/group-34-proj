@@ -22,22 +22,20 @@ const teamNames = [
 ];
 
 const addNames = () => {
-    const teamSection = document.getElementById("team");
-    // Check if team section exists
-    if (teamSection) {
-      teamNames.forEach(member => {
-        let nameElement = document.createElement("h2");
-        nameElement.className = "pt-5";
-        console.log(nameElement)
-        nameElement.textContent = member.name;
-        let gradeMajor = document.createElement("p");
-        gradeMajor.textContent = member.grade + "•" + member.major;
-        nameElement.appendChild(gradeMajor);
-        console.log(nameElement)
-        teamSection.appendChild(nameElement);
-      });
-    }
+  const teamSection = document.getElementById("team");
+  // Check if team section exists
+  teamNames.forEach((member) => {
+    let nameElement = document.createElement("h2");
+    nameElement.className = "text-lg font-semibold pt-5 mx-2";
+    nameElement.textContent = member.name;
 
-  };
+    let gradeMajor = document.createElement("p");
+    gradeMajor.className = "text-sm font-normal"
+    gradeMajor.textContent = member.grade + " • " + member.major;
+
+    nameElement.appendChild(gradeMajor);
+    teamSection.appendChild(nameElement);
+  });
+};
 
 addNames();
