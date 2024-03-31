@@ -23,7 +23,6 @@ const teamNames = [
 
 const addNames = () => {
   const teamSection = document.getElementById("team");
-  // Check if team section exists
   teamNames.forEach((member) => {
     let nameElement = document.createElement("h2");
     nameElement.className = "text-lg font-semibold pt-5 mx-2";
