@@ -1,72 +1,88 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document Title</title>
     <!-- CSS Stylesheets -->
-    <link rel="stylesheet" href="output.css">
+    <link rel="stylesheet" href="output.css" />
     <!-- JavaScript Files -->
     <script type="module" src="script.js" defer></script>
-</head>
-<body>
+  </head>
+  <body>
     <header id="vision" class="text-center justify-center">
-        <!-- Navigation bar, logo, etc. -->
-        <div class="flex justify-center w-full bg-blue-400 items-center p-5 mb-5">
-            <nav class="block items-center" id="navbar">
-                <ul class="font-medium flex text-white text-lg">
-                    <li class="mr-6"><a class="block" href="#somewhere">Overview</a></li>
-                    <li class="mr-6"><a class="block" href="#somewhere">Application Parts</a></li>
-                    <li class="mr-6"><a class="block" href="#somewhere">Data Requirements</a></li>
-                    <li class="mr-6"><a class="block" href="#somewhere">Wireframes</a></li>
-                    <li class="mr-6"><a class="block" href="#somewhere">Real-World Connection</a></li>
-                    <li class="mr-6"><a class="block" href="#somewhere">Integrative Experience</a></li>
-                </ul>
-            </nav>
-        </div>
-        <div>
-            <h1 class="text-2xl">
-                **project goal and ambition**
-            </h1>
-            <section id="team" class="flex justify-center">
-                <h2>
-                    
-                    **team intro**
-                </h2>
-                <h2>
-                    **team intro**
-                </h2>
-                <h2>
-                    **team intro**
-                </h2>
-                <h2>
-                    **team intro**
-                </h2>
-            </section>
-        </div>
+      <!-- Navigation bar, logo, etc. -->
+      <div class="my-5">
+        <h1 class="text-2xl">**project goal and ambition**</h1>
+        <section id="team" class="flex justify-center">
+          
+        </section>
+      </div>
     </header>
 
-    <nav>
-        <!-- Links to different sections/pages -->
+    <nav
+      class="block items-center justify-center text-center w-full bg-blue-400 p-5 mb-5"
+      id="navbar"
+    >
+      <div class="justify-center flex">
+        <ul class="font-medium flex text-white text-lg">
+          <li class="mr-6">
+            <a class="block" href="#overview">Overview</a>
+          </li>
+          <li class="mr-6">
+            <a class="block" href="#application-parts">Application Parts</a>
+          </li>
+          <li class="mr-6">
+            <a class="block" href="#data-requirement">Data Requirements</a>
+          </li>
+          <li class="mr-6">
+            <a class="block" href="#wire-frames">Wire frames</a>
+          </li>
+          <li class="mr-6">
+            <a class="block" href="#real-world">Real-World Connection</a>
+          </li>
+          <li class="mr-6">
+            <a class="block" href="#integrative-experience">Integrative Experience</a>
+          </li>
+        </ul>
+      </div>
     </nav>
 
     <main>
-        <!-- Main content of the document -->
-        <article>
-            <!-- Primary content like a blog post or article -->
-        </article>
-
-        <section>
-            <!-- Related content or subsections -->
+      <!-- Main content of the document -->
+      <div class="justify-start flex-col mx-10 py-5">
+        <section class="mb-10" id="overview">
+          <h1 class="text-xl font-bold">Overview</h1>
+          <p>With the id “overview,” this section should provide a 150-200 word explanation of the web application your team aims to design and develop. Use an tag for the section title. Focus on the project's vision, emphasizing the real-world problem it intends to solve and its target audience, rather than delving into interface details.</p>
         </section>
+        <section class="mb-10" id="application-parts">
+          <h2 class="text-xl font-bold">Application Parts</h2>
+          <p>2. Identified by the id “application-parts,” describe at least three **critical components** of your application in separate paragraphs under this section, totaling 200-300 words. Title this section with an **`h2`** tag and ensure each application part discussed represents a primary functionality of your web application. Here is an example of a one component of an application:
+ The Interactive Map feature stands as a pivotal component of EcoConnect, designed to seamlessly guide users through the discovery of local recycling centers. By leveraging real-time GPS data, the map offers an intuitive, user-friendly interface that allows individuals to easily find facilities based on their current location or search criteria. This feature not only simplifies the process of locating recycling options but also encourages user engagement by integrating interactive elements such as filters for different types of recyclables and detailed information pop-ups for each center. The Interactive Map exemplifies how EcoConnect blends technology with environmental stewardship, making it a cornerstone of the application's mission to promote recycling and sustainability within the community.
+         </p>
+        </section>
+        <section class="mb-10" id="data-requirements">
+          <h2 class="text-xl font-bold">Data Requirements</h2>
+          <p>Under the id “data-requirements,” structure this section to include an introduction, four main paragraphs detailing the top types of data your application will handle, and a conclusion, making up 300 words in total. Title the section with an tag. Focus on high-level data needs rather than specific database designs or records. Here is an example of one data requirement: One of the foundational data requirements for our web application, EcoConnect, is the comprehensive database of local recycling centers. This database is critical as it serves as the backbone of our interactive map feature, enabling users to easily locate recycling facilities in their vicinity. For each center, the database will store essential information such as the physical address, GPS coordinates for precise mapping, operating hours, and a detailed list of accepted recyclable materials. This categorization of materials is particularly important as it guides users in sorting their recyclables correctly, ensuring that items are processed efficiently and effectively. Additionally, the database will include contact information for each facility, allowing users to inquire directly about specific recycling guidelines or services. By aggregating this data, EcoConnect aims to demystify the recycling process for its users, providing a user-friendly platform that encourages and facilitates active participation in local recycling efforts. The creation and maintenance of this database represent a significant step towards our goal of enhancing sustainability practices within the community, showcasing the application's commitment to solving real-world environmental challenges through accessible and actionable information.</p>
+        </section>
+        <section class="mb-10" id="wire-frames">
+          <h2 class="text-xl font-bold">Wire frames</h2>
+          <p>Utilize the id “wire-frames” for this section, where you'll include four wireframes representing key views/screens of your application, along with a brief paragraph for each explaining its purpose and design rationale. You must be able to create an image from these wireframes in PNG, JPG, or GIF format to be included in the document using the img tag alongside each paragraph. This section should be 200 words in length, excluding HTML tags. Here is an example of one wireframe and its description: The wireframes for the EcoConnect application have been meticulously designed to provide a clear and intuitive user experience, focusing on ease of navigation and accessibility. The Home Page wireframe sets the stage with a welcoming layout that highlights the application's primary features, including a prominent search function for the interactive map and quick links to the community forum and resource library. This page is designed to immediately engage users, offering a snapshot of the most relevant information and recent community activities.</p>
+        </section>
+        <section class="mb-10" id="real-world">
+          <h2 class="text-xl font-bold">Real-World Connection</h2>
+          <p>With the id “real-world,” this section, spanning 200 words, should elucidate how your application addresses a tangible real-world issue, supported by an introduction and conclusion. Use real-world examples as inspiration for this narrative, detailing the problem your project aims to resolve. Here are some examples to give you an idea of what we are looking for:</p>
+        </section>
+        <section class="mb-10" id="integraive-experience">
+          <h2 class="text-xl font-bold">Integrative Experience</h2>
+          <p>6. Marked by the id “integrative-experience,” in 200 words, detail how this project ties into the [integrative experience](https://www.umass.edu/gened/objectives-designations/curricular-designations/integrative-experience) requirements of your coursework and personal experiences. Discuss how your project is a culmination of your university education and personal growth, touching upon specific courses, semesters, and life experiences that contribute to the development of this project.</p>
+        </section>
+      </div>
 
-        <aside>
-            <!-- Side content like ads, links to other posts, or author info -->
-        </aside>
     </main>
 
     <footer>
-        <!-- Footer content like copyright, links to privacy policy, etc. -->
+      <!-- Footer content like copyright, links to privacy policy, etc. -->
     </footer>
-</body>
+  </body>
 </html>

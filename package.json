@@ -19,7 +19,7 @@
   "keywords": [],
   "author": {
     "name": "Team 34",
-    "url": ""
+    "url": "https://github.com/faizfrds/group-34-proj"
   },
   "contributors": [
     "Faiz Firdaus, ffirdaus@umass.edu, @faizfrds",
@@ -30,7 +30,8 @@
   "scripts": {
     "dev": "",
     "test": "",
-    "start": "http-server src/docs/milestone-01 -p 3000 -c-1 -o -s"
+    "start": "http-server src/docs/milestone-01 -p 3000 -c-1 -o -s",
+    "validate": "html-validate src/**/*.html"
   },
   "devDependencies": {
     "html-validate": "^8.18.1",
