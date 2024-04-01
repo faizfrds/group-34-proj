@@ -10,9 +10,9 @@ const teamNames = [
     major: "Informatics (DS)",
   },
   {
-    name: "Luke Walsh", //Fill in grade and major
-    grade: "",
-    major: "",
+    name: "Luke Walsh",
+    grade: "Junior",
+    major: "Computer Science",
   },
   {
     name: "Sumrudhi Jadhav",
