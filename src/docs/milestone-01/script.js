@@ -6,11 +6,11 @@ const teamNames = [
   },
   {
     name: "Ryan Kirchner",
-    grade: "",
-    major: "",
+    grade: "Junior",
+    major: "Informatics (DS)",
   },
   {
-    name: "Luke Walsh",
+    name: "Luke Walsh", //Fill in grade and major
     grade: "",
     major: "",
   },
@@ -25,7 +25,7 @@ const addNames = () => {
   const teamSection = document.getElementById("team");
   teamNames.forEach((member) => {
     let nameElement = document.createElement("h2");
-    nameElement.className = "text-lg font-semibold pt-5 mx-2";
+    nameElement.className = "text-lg font-semibold pt-5 mx-4";
     nameElement.textContent = member.name;
 
     let gradeMajor = document.createElement("p");
