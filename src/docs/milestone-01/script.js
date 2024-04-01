@@ -11,8 +11,8 @@ const teamNames = [
   },
   {
     name: "Luke Walsh",
-    grade: "",
-    major: "",
+    grade: "Junior",
+    major: "Computer Science",
   },
   {
     name: "Sumrudhi Jadhav",
