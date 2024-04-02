@@ -23,8 +23,8 @@ const teamNames = [
   {
     name: "Sumrudhi Jadhav",
     id: "sumrudhi",
-    grade: "",
-    major: "",
+    grade: "Sophomore",
+    major: "Computer Science",
     bio: "In regards to web development, I have worked with TypeScript, JavaScript, HTML, and CSS. However, I am not too well versed in HTML and CSS. I also have experience with Ruby on Rails, Git, Java, Python, C/C++, SQL, MERN Stack, and Swift.",
   },
 ];
