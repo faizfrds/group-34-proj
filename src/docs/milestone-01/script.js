@@ -7,12 +7,6 @@ const teamNames = [
     bio: "Faiz is experienced in doing frontend and backend development as well using databases. He can do design work using Figma and also develop frontend using Tailwind CSS. He has some experience with PostgreSQL.",
   },
   {
-    name: "Ryan Kirchner",
-    id: "ryan",
-    role: "Front-End Developer",
-    bio: "Ryan is proficient in JavaScript, HTML, CSS,Typescript, and has experience developing web applications. He also has skills in other tech-related tools such as MS Office, MS Visual Studio, MS SQL Server Management Studio.",
-  },
-  {
     name: "Luke Walsh",
     id: "luke",
     role: "Back-End Developer",
@@ -21,8 +15,14 @@ const teamNames = [
   {
     name: "Sumrudhi Jadhav",
     id: "sumrudhi",
-    role: "Documentation Lead",
+    role: "Front-End Developer",
     bio: "In regards to web development, Sumrudhi has worked with TypeScript, JavaScript, HTML, and CSS. She also has experience with Ruby on Rails, Git, Java, Python, C/C++, SQL, MERN Stack, and Swift.",
+  },
+  {
+    name: "Ryan Kirchner",
+    id: "ryan",
+    role: "Documentation Lead",
+    bio: "Ryan is proficient in JavaScript, HTML, CSS,Typescript, and has experience developing web applications. He also has skills in other tech-related tools such as MS Office, MS Visual Studio, MS SQL Server Management Studio.",
   },
 ];
 
