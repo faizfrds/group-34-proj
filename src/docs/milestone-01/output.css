@@ -657,6 +657,18 @@ video {
   margin-top: 1rem;
 }
 
+.mb-3 {
+  margin-bottom: 0.75rem;
+}
+
+.mb-4 {
+  margin-bottom: 1rem;
+}
+
+.mb-8 {
+  margin-bottom: 2rem;
+}
+
 .block {
   display: block;
 }
@@ -931,6 +943,14 @@ video {
 
 .outline {
   outline-style: solid;
+}
+
+.filter {
+  filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
+}
+
+.\[x\:\FFFD\FFFD\FFFD\FFFD_k\FFFD\FFFDIu\FFFD\%\FFFD\FFFD\FFFDy\FFFDWN\FFFD c\FFFD\$\FFFD 1\FFFD\FFFDj\FFFD\FFFD E\>\1E\FFFD\FFFD\FFFD fS\?\FFFD\FFFD\FFFD\328\~\FFFD\19\579\FFFD\FFFD 7\1C\FFFD\7F\FFFD\+\`\FFFDMoG\FFFDj\^\7F\FFFD\FFFD\4\FFFD_g\FFFD\FFFDw\FFFD\] {
+  x: ���� k��Iu�%���y�WN�c�$�1��j��E>���fS?���̨~�չ��7��+`�MoG�j^��� g��w�;
 }
 
 .\[y\:\FFFD\FFFD\&\FFFDK\FFFDIP\1F\FFFDJ\FFFD\FFFD\FFFD\] {
