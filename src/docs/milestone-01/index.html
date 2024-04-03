@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -11,45 +11,42 @@
   </head>
   <body class="">
     <header id="vision" class="text-center justify-center mb-10">
-      <!-- Navigation bar, logo, etc. -->
-      <div>
-        <h1 class="text-2xl bg-blue-400 text-white p-7">
-          <strong>Academix: </strong>The Future of Student Productivity
-        </h1>
-        <section id="team" class="flex justify-center mx-5"></section>
-      </div>
+      <!-- Title section + team intros -->
+      <h1 class="text-2xl bg-blue-400 text-white p-7">
+        <strong>Academix: </strong>The Future of Student Productivity
+      </h1>
+      <section id="team" class="flex justify-center mx-5"></section>
     </header>
-
+    <!-- Navigation bar, logo, etc. -->
     <nav
-      class="block items-center justify-center text-center w-full bg-blue-400 p-5 my-5"
+      class="block items-center justify-center text-center w-full bg-blue-400/90 p-5 my-5 mb-2 px-6 py-5 sticky top-0 backdrop-blur text-4xl font-medium"
       id="navbar"
     >
       <div class="justify-center flex">
         <ul class="font-medium flex text-white text-lg">
           <li class="mr-6">
-            <a class="block" href="#overview">Overview</a>
+            <a class="block hover:text-neutral-200" href="#overview">Overview</a>
           </li>
           <li class="mr-6">
-            <a class="block" href="#application-parts">Application Parts</a>
+            <a class="block hover:text-neutral-200" href="#application-parts">Application Parts</a>
           </li>
           <li class="mr-6">
-            <a class="block" href="#data-requirement">Data Requirements</a>
+            <a class="block hover:text-neutral-200" href="#data-requirement">Data Requirements</a>
           </li>
           <li class="mr-6">
-            <a class="block" href="#wire-frames">Wire frames</a>
+            <a class="block hover:text-neutral-200" href="#wire-frames">Wire frames</a>
           </li>
           <li class="mr-6">
-            <a class="block" href="#real-world">Real-World Connection</a>
+            <a class="block hover:text-neutral-200" href="#real-world">Real-World Connection</a>
           </li>
           <li class="mr-6">
-            <a class="block" href="#integrative-experience"
+            <a class="block hover:text-neutral-200" href="#integrative-experience"
               >Integrative Experience</a
             >
           </li>
         </ul>
       </div>
     </nav>
-
     <main>
       <!-- Main content of the document -->
       <div class="justify-start flex-col mx-10 py-5 text-justify">
@@ -121,8 +118,8 @@
               study videos, anything. The result is a repository for important
               class materials, ensuring everything vital is just a click away.
             </li>
-            <br />
           </ul>
+          <br />
           <p>
             <strong>Assignment and Material Uploads:</strong> Central to keeping
             academic tasks in check, this feature enables students to add
@@ -145,63 +142,156 @@
         </section>
         <section class="mb-10" id="data-requirements">
           <h2 class="text-xl font-bold text-blue-700">Data Requirements</h2>
-          <p>The foundation of an effective productivity application for students lies in its capability to manage and present the most relevant data for a student on a day to day basis effectively. For our project, we envisioned a comprehensive application that targets the varying needs of student users from different academic backgrounds. Addressing the high-level data needs of our application is essential in crafting a platform of this nature.
-          </p><br>
-          
-          <p>To create a tab where the user can view and add/remove classes we need a comprehensive database of departments, courses, and other academic entities. For each course, we will store data elements such as the course name, code, instructor details, class schedules, and syllabi.This data will be used to create a schedule view that shows the dates and times of lectures and labs that a student has throughout the week.  Students will be able to look up and add classes to their schedule based on any of the listed data elements. Aligning with the student's academic structure facilitates a more intuitive navigation and organization within the application.
-          </p><br>
+          <p>
+            The foundation of an effective productivity application for students
+            lies in its capability to manage and present the most relevant data
+            for a student on a day to day basis effectively. For our project, we
+            envisioned a comprehensive application that targets the varying
+            needs of student users from different academic backgrounds.
+            Addressing the high-level data needs of our application is essential
+            in crafting a platform of this nature.
+          </p>
 
-          <p>A task and assignment management system that necessitates tracking various elements, like assignment descriptions, due dates, priority levels, and completion statuses will be central to our application. Databases containing these elements for each class will help fuel this system. Academicx will support customization and categorization based on subjects or courses, enabling students to view and prioritize their workloads accurately. The data captured here will be displayed as the heart of the application, where students can manage their tasks through an interface that corresponds with their daily academic life. As this database will be used for both the assignment menu and calendar view, students will be able to add assignments from various classes and quickly see what areas of the month ahead of them looks like in terms of academic rigor. This will enable the student to be able to plan ahead more efficiently.
-          </p><br>
-
-          <p>Acedemix will incorporate data reflecting user preferences, such as notification settings, theme choices, and custom tags for tasks. By personalizing user interaction with the application, an environment will be created that reflects each students personal academic needs
-          </p><br>
-
-          <p>Our application will handle integration and interoperability data to synchronize with other systems. This includes API keys, authentication tokens, and metadata that enable seamless connections with external learning management systems, calendars, and educational tools. The handling of student data is performed with privacy and security at the forefront to allow for a centralized yet secure compilation of the student's academic operations across various platforms.
-          </p><br>
-
-          <p>In summary, handling these types of data: academic structure information, task and assignment management, personalization and user preferences, and integration and interoperability, will ensure our productivity application addresses the complex needs of student users.  Through this application, students will be empowered to excel academically, manage their time efficiently, and maintain a balanced state of mental well-being. 
+          <br />
+          <p>
+            To create a tab where the user can view and add/remove classes we
+            need a comprehensive database of departments, courses, and other
+            academic entities. For each course, we will store data elements such
+            as the course name, code, instructor details, class schedules, and
+            syllabi.This data will be used to create a schedule view that shows
+            the dates and times of lectures and labs that a student has
+            throughout the week. Students will be able to look up and add
+            classes to their schedule based on any of the listed data elements.
+            Aligning with the student's academic structure facilitates a more
+            intuitive navigation and organization within the application.
+          </p>
+          <br />
+          <p>
+            A task and assignment management system that necessitates tracking
+            various elements, like assignment descriptions, due dates, priority
+            levels, and completion statuses will be central to our application.
+            Databases containing these elements for each class will help fuel
+            this system. Academicx will support customization and categorization
+            based on subjects or courses, enabling students to view and
+            prioritize their workloads accurately. The data captured here will
+            be displayed as the heart of the application, where students can
+            manage their tasks through an interface that corresponds with their
+            daily academic life. As this database will be used for both the
+            assignment menu and calendar view, students will be able to add
+            assignments from various classes and quickly see what areas of the
+            month ahead of them looks like in terms of academic rigor. This will
+            enable the student to be able to plan ahead more efficiently.
+          </p>
+          <br />
+          <p>
+            Acedemix will incorporate data reflecting user preferences, such as
+            notification settings, theme choices, and custom tags for tasks. By
+            personalizing user interaction with the application, an environment
+            will be created that reflects each students personal academic needs
+          </p>
+          <br />
+          <p>
+            Our application will handle integration and interoperability data to
+            synchronize with other systems. This includes API keys,
+            authentication tokens, and metadata that enable seamless connections
+            with external learning management systems, calendars, and
+            educational tools. The handling of student data is performed with
+            privacy and security at the forefront to allow for a centralized yet
+            secure compilation of the student's academic operations across
+            various platforms.
+          </p>
+          <br />
+          <p>
+            In summary, handling these types of data: academic structure
+            information, task and assignment management, personalization and
+            user preferences, and integration and interoperability, will ensure
+            our productivity application addresses the complex needs of student
+            users. Through this application, students will be empowered to excel
+            academically, manage their time efficiently, and maintain a balanced
+            state of mental well-being.
           </p>
         </section>
-       <section class="mb-10" id="wire-frames">
+        <section class="mb-10" id="wire-frames">
           <h2 class="text-xl font-bold text-blue-700">Wire frames</h2>
-
-          <p><strong>Student Dashboard View</strong></p><Br>
-            <div class="justify-center flex mb-8">
-
-              <img src="images/Dashboard.png" alt="Dashboard" width="40%" height="40%" class="justify-center flex"><br>
-            </div>
-          <p>The dashboard houses all of the student's classes and from here they can add assignments and access their calendar through the navbar. The dashboard was designed to be simple and intuitive. Here the student has added three classes and they can edit the classes by clicking on the black dots in the top right corner of each class. There they can edit the image of the class or remove it, and to add classes the user simply clicks on the add symbol. 
-          </p><br>
-
-          <p><strong> Class Page View</strong></p><Br>
-            <div class="justify-center flex mb-8">
-
-              <img src="images/Class-Page-2.png" alt="Class-Page" width="40%" height="40%"><br>
-            </div>
-          <p>The Individual class page was designed to give the user information that would be most helpful to them now. This was accomplished by showing the current week and what assignments/quizzes/exams they have due. At the bottom, we also display the material the user hasn't mastered yet. This allows the user to take one look and immediately know what they must study to excel in the class. From this class page, the user can also access, through the navbar,  the study materials that they’ve uploaded, all the information to review, add assignments, and see a full calendar view for the class.
-          </p><br>
-
-          <p><strong>Add Assignment Menu</strong></p><Br>
-            <div class="justify-center flex mb-8">
-
-              <img src="images/Add-Menu.png" alt="Add-New-Assignment-menu" width="20%" height="20%"><br>
-            </div>
-          <p>Here we have the Add New Assignment Menu, this menu works simply. First, the user selects a class through the dropdown menu, then they give the assignment a name and choose a due date by clicking on the calendar icon and selecting the date they want.
-          </p><br>
-
-          <p><strong>Calendar View</strong></p><Br>
-            <div class="justify-center flex mb-8">
-
-              <img src="images/Calendar.png" alt="Calendar" width="50%" height="50%"><br>
-            </div>
-          <p>Lastly, we have the Calendar view. Here the user can see a big picture view of what they have due for every class. The user can also filter what is displayed by choosing a class from the dropdown menu. Then only that class’s assignments will be displayed.
+          <p><strong>Student Dashboard View</strong></p>
+          <br />
+          <div class="justify-center flex mb-8">
+            <img
+              src="images/Dashboard.png"
+              alt="Dashboard"
+              width="40%"
+              height="40%"
+              class="justify-center flex"
+            /><br />
+          </div>
+          <p>
+            The dashboard houses all of the student's classes and from here they
+            can add assignments and access their calendar through the navbar.
+            The dashboard was designed to be simple and intuitive. Here the
+            student has added three classes and they can edit the classes by
+            clicking on the black dots in the top right corner of each class.
+            There they can edit the image of the class or remove it, and to add
+            classes the user simply clicks on the add symbol.
           </p>
-
+          <br />
+          <p><strong> Class Page View</strong></p>
+          <br />
+          <div class="justify-center flex mb-8">
+            <img
+              src="images/Class-Page-2.png"
+              alt="Class-Page"
+              width="40%"
+              height="40%"
+            /><br />
+          </div>
+          <p>
+            The Individual class page was designed to give the user information
+            that would be most helpful to them now. This was accomplished by
+            showing the current week and what assignments/quizzes/exams they
+            have due. At the bottom, we also display the material the user
+            hasn't mastered yet. This allows the user to take one look and
+            immediately know what they must study to excel in the class. From
+            this class page, the user can also access, through the navbar, the
+            study materials that they’ve uploaded, all the information to
+            review, add assignments, and see a full calendar view for the class.
+          </p>
+          <br />
+          <p><strong>Add Assignment Menu</strong></p>
+          <br />
+          <div class="justify-center flex mb-8">
+            <img
+              src="images/Add-Menu.png"
+              alt="Add-New-Assignment-menu"
+              width="20%"
+              height="20%"
+            /><br />
+          </div>
+          <p>
+            Here we have the Add New Assignment Menu, this menu works simply.
+            First, the user selects a class through the dropdown menu, then they
+            give the assignment a name and choose a due date by clicking on the
+            calendar icon and selecting the date they want.
+          </p>
+          <br />
+          <p><strong>Calendar View</strong></p>
+          <br />
+          <div class="justify-center flex mb-8">
+            <img
+              src="images/Calendar.png"
+              alt="Calendar"
+              width="50%"
+              height="50%"
+            /><br />
+          </div>
+          <p>
+            Lastly, we have the Calendar view. Here the user can see a big
+            picture view of what they have due for every class. The user can
+            also filter what is displayed by choosing a class from the dropdown
+            menu. Then only that class’s assignments will be displayed.
+          </p>
         </section>
         <section class="mb-10" id="real-world">
           <h2 class="text-xl font-bold text-blue-700">Real-World Connection</h2>
-          <!-- <p>With the id “real-world,” this section, spanning 200 words, should elucidate how your application addresses a tangible real-world issue, supported by an introduction and conclusion. Use real-world examples as inspiration for this narrative, detailing the problem your project aims to resolve. Here are some examples to give you an idea of what we are looking for:</p> -->
           <p>
             In today’s world, students frequently struggle to manage numerous
             tasks from different classes effectively. This challenge to keep
@@ -239,7 +329,6 @@
           <h2 class="text-xl font-bold text-blue-700">
             Integrative Experience
           </h2>
-          <!-- <p>6. Marked by the id “integrative-experience,” in 200 words, detail how this project ties into the [integrative experience](https://www.umass.edu/gened/objectives-designations/curricular-designations/integrative-experience) requirements of your coursework and personal experiences. Discuss how your project is a culmination of your university education and personal growth, touching upon specific courses, semesters, and life experiences that contribute to the development of this project.</p> -->
           <p>
             This project culminates our university education and personal
             growth, reflecting the integrative experience requirements outlined
@@ -268,8 +357,13 @@
           </p>
         </section>
       </div>
+      <div class="text-center mb-7">
+        <a class="text-black text-center mb-2 hover:bg-neutral-300 hover:scale-105 bg-neutral-100 p-3 rounded-full animate" href="#vision">
+          Go back to top
+        </a>
+      </div>
     </main>
-
+    <!-- Footer section -->
     <footer>
       <div class="bg-blue-950 p-10 text-neutral-200 justify-center flex">
         <p>© 2024 Academix. All rights reserved.</p>
