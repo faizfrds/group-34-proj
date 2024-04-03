@@ -1,3 +1,4 @@
+
 const teamNames = [
   {
     name: "Faiz Firdaus",
@@ -37,24 +38,26 @@ const addNames = () => {
     // nameElement.textContent = member.name;
 
     let namePic = document.createElement("div"); //name and pic container
+    namePic.className = "justify-center flex flex-col text-center";
 
     let memberName = document.createElement("p");
     memberName.className = "text-lg font-semibold";
     memberName.textContent = member.name;
 
     let picContainer = document.createElement("div");
-    picContainer.className = "h-10 w-10 rounded-full bg-black";
+    picContainer.className = "rounded-full m-4 justify-center flex";
     let pic = document.createElement("img");
-    pic.src = "public/ryan.jpg";
-    
-    pic.className = "h-2 w-2 rounded-full object-fit"
+    pic.src = `images/${member.id}.png`;
+    pic.height = "200";
+    pic.width = "200";
+    pic.style = "border:2px solid black; margin-top: 10px; margin-bottom:10px; border-radius:10px "
     picContainer.appendChild(pic);
 
     let gradeMajor = document.createElement("p");
     gradeMajor.className = "text-md font-normal";
     gradeMajor.textContent = member.grade + " • " + member.major;
 
-    namePic.appendChild(pic);
+    namePic.appendChild(picContainer);
     namePic.appendChild(memberName);
     namePic.appendChild(gradeMajor);
 
