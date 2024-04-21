@@ -7,10 +7,10 @@
     <!-- CSS Stylesheets -->
     <link rel="stylesheet" href="output.css" />
     <!-- JavaScript Files -->
-    <script type="module" src="script.js" defer></script>
+    <script type="module" src="main.js" defer></script>
   </head>
   <body>
-    <div class="h-screen">
+    <div class="h-screen" id="top">
       <!-- <nav id="vision" class="text-center justify-center bg-red-900">
       <h1 class="text-3xl bg-red-900 text-white p-7">
         <strong>Academix
@@ -95,25 +95,19 @@
           </div>
         </div>
       </nav>
-      <main class="h-4/5">
+      <main class="h-fit m-5">
         <!-- Main content of the document -->
+        <h1 class="text-center text-4xl font-semibold capitalize">class dashboard</h1>
         <div
           class="justify-start grid lg:grid-cols-4 md:grid-cols-3 grid-cols-1"
-          id="dashboard"
+          id="class-dashboard"
         >
-          <div class="bg-blue-100 p-4 m-5 text-center rounded-md">CLASSES</div>
-          <div class="bg-blue-100 p-4 m-5 text-center rounded-md">CLASSES</div>
-          <div class="bg-blue-100 p-4 m-5 text-center rounded-md">CLASSES</div>
-          <div class="bg-blue-100 p-4 m-5 text-center rounded-md">CLASSES</div>
-          <div class="bg-blue-100 p-4 m-5 text-center rounded-md">CLASSES</div>
-          <div class="bg-blue-100 p-4 m-5 text-center rounded-md">CLASSES</div>
-          <div class="bg-blue-100 p-4 m-5 text-center rounded-md">CLASSES</div>
-          <div class="bg-blue-100 p-4 m-5 text-center rounded-md">CLASSES</div>
         </div>
+        <h1 id="loading-display" class="text-center text-xl py-3 items-center h-[50vh]"></h1>
         <div class="text-center my-7">
           <a
-            class="text-black text-center mb-2 hover:bg-neutral-300 hover:scale-105 bg-neutral-100 p-3 rounded-full animate"
-            href="#vision"
+            class="text-black text-center mb-2 hover:bg-neutral-300 hover:scale-105 bg-neutral-100 rounded-full animate p-3"
+            href="#top"
           >
             Go back to top
           </a>
