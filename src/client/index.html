@@ -55,14 +55,6 @@
                   >Calendar</a
                 >
               </li>
-              <li class="mr-6">
-                <a
-                  id="nav-class"
-                  class="block p-2 hover:bg-neutral-300 bg-neutral-200 text-sm text-black rounded-xl"
-                  href="#class-screen"
-                  >Class Page View</a
-                >
-              </li>
             </ul>
 
             <!-- Small screen nav bar -->
@@ -88,13 +80,6 @@
                   >Calendar</a
                 >
               </div>
-              <div class="mx-2">
-                <a
-                  class="block p-2 hover:bg-neutral-300 bg-neutral-200 text-sm text-black rounded-xl my-2"
-                  href="#class-screen"
-                  >Class Page View</a
-                >
-              </div>
             </div>
           </div>
         </div>
@@ -102,9 +87,10 @@
       <main class="h-fit m-5">
         <!-- Main content of the document -->
 
-         <div id="views" >
+        <!-- Start of the Views Container-->
+        <div id="views" >
           <div id="home-view" class="view">
-            
+
         <h1 class="text-center text-4xl font-semibold capitalize">class dashboard</h1>
         <!-- Dashboard Div -->
         <div
@@ -121,35 +107,74 @@
             Go back to top
           </a>
         </div>
+
         </div>
 
-         <!-- Class page view setup -->
-         <div id="class-view" class="view" style="display: none;">
-    <div class="class-screen" id="class-top">
-      <div id="class-links" class="class-links-container">
-        <!-- Dynamic class links will be generated and placed here -->
-        <div id="class-details" class="hidden">
-          <h2 id="class-title">Class Title</h2>
-          <p id="class-description">Class Description Here</p>
-          <!-- Additional elements for class details can be added here -->
-      </div>
-    </div>
-  </div>
-</div>
-  
+        <!-- Class page view setup -->
+        <div id="class-view" class="view" style="display: none;">
+          
+          <!-- To-Do List Section -->
+          <section id="to-do-section" class="to-do-container">
+            <h2 class="section-title">To-Do this week</h2>
+            <table class="to-do-table">
+              <tr class="days-of-week">
+                <!-- To-Do List Headers -->
+                <th id="monday-header" class="bg-red-900">Monday</th>
+                <th id="tuesday-header">Tuesday</th>
+                <th id="wednesday-header" class="bg-red-900">Wednesday</th>
+                <th id="thursday-header">Thursday</th>
+                <th id="friday-header" class="bg-red-900">Friday</th>
+                <th id="saturday-header">Saturday</th>
+                <th id="sunday-header" class="bg-red-900">Saturday</th>
+              </tr>
 
+              <!-- To-Do List task id's -->
+              <tr class="to-do-items">
+                <td id="monday-tasks" class="task"></td> 
+                <td id="tuesday-tasks" class="task"></td> 
+                <td id="wednesday-tasks" class="task"></td> 
+                <td id="thursday-tasks" class="task"></td> 
+                <td id="friday-tasks" class="task"></td> 
+                <td id="saturday-tasks" class="task"></td>
+                <td id="sunday-tasks" class="task"></td> 
+              </tr>
+            </table>
+          </section>
+        
+        
+          <!-- Review Section -->
+          <section id="review-section" class="review-container">
+            <h2 class="section-title">Review</h2>
+
+            <!--Review Items-->
+            <div class="review-item">
+              <h3>Linear Ind.</h3>
+              <span class="status almost-there">Almost There</span>
+            </div>
+            <div class="review-item">
+              <h3>Lecture 13</h3>
+              <span class="status beginner">Beginner</span>
+            </div>
+          </section>
+        </div>
+        <!-- End of Class Page View -->
+        
+      
+        </div>
         <!--End of view selector-->
+        <footer>
+          <div
+            class="bg-black p-10 text-neutral-200 justify-center bottom-0 flex"
+          >
+            <p>© 2024 Academix. All rights reserved.</p>
+          </div>
+        </footer>
         </div>
 
       </main>
       <!-- Footer section -->
-      <footer>
-        <div
-          class="bg-black p-10 text-neutral-200 justify-center bottom-0 flex"
-        >
-          <p>© 2024 Academix. All rights reserved.</p>
-        </div>
-      </footer>
+      
+      
     </div>
   </body>
 </html>
