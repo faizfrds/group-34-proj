@@ -60,6 +60,22 @@ html,
 1. Remove the margin in all browsers.
 2. Inherit line-height from `html` so users can set them as a class directly on the `html` element.
 */
+/*
+styling to handle muli page view setup 
+*/
+
+#views {
+  padding: 20px;
+  text-align: left;
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.view {
+  display: none;
+  /* Hide all views by default */
+}
 
 body {
   margin: 0;
