@@ -60,3 +60,34 @@ const addClasses = () => {
 };
 
 addClasses();
+
+//Code for handling multi page view
+
+document.addEventListener("DOMContentLoaded", () => {
+  function navigate(viewId) {
+    // Hide all views
+    document.querySelectorAll(".view").forEach((view) => {
+      view.style.display = "none";
+    });
+
+    // Show the requested view
+    document.getElementById(viewId).style.display = "block";
+  }
+  navigate("home-view");
+
+  document
+  .getElementById("nav-dashboard")
+  .addEventListener("click", () => navigate("home-view"));
+  document
+  .getElementById("nav-class")
+  .addEventListener("click", () => navigate("class-view"));
+  document
+  .getElementById("nav-assignment")
+  .addEventListener("click", () => navigate("#assignment-view"));
+document
+  .getElementById("nav-calendar")
+  .addEventListener("click", () => navigate("#calendar-view"));
+
+// Initialize with the home view
+navigate("home-view");
+});
