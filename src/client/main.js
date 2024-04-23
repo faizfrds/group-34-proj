@@ -109,6 +109,9 @@ const reviewInfo = [
 //Code for running dashboard and accessing classes 
 const dashboard = document.getElementById("class-dashboard");
 const loadingElement = document.getElementById("loading-display");
+const currentClassNameElement = document.getElementById("current-class-name");
+const dashboardButton = document.getElementById("nav-dashboard")
+
 
 const addClasses = () => {
   loadingElement.textContent = "Loading classes...";
@@ -153,6 +156,7 @@ const addClasses = () => {
         const currCourse = course.name
         console.log("course clicked was",currCourse)
         populateClass(course)
+        updateCurrentClassName(course.name); // Update the class name in the navbar
         navigate("class-view")
       });
 
@@ -165,6 +169,10 @@ const addClasses = () => {
 
 
 addClasses();
+
+const updateCurrentClassName = (className) => {
+  currentClassNameElement.textContent = ": "+className; // Set the class name
+};
 
 // to do list elements 
 const toDoMonday = document.getElementById("monday-tasks")
@@ -249,3 +257,7 @@ document
 // Initialize with the home view
 navigate("home-view");
 });
+
+dashboardButton.addEventListener("click",() => currentClassNameElement.textContent = ': Class Dashboard')
+
+
