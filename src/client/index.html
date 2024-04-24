@@ -155,6 +155,36 @@
               </tr>
             </table>
           </section>
+          
+          <section id="add-assignment-section" class="add-assignment-container">
+          <h2 class="section-title">Add Assignment</h2>
+          <form id="add-assignment-form" class="add-assignment-form">
+            <div class="form-group">
+              <label for="course-name-input">Course Name:</label>
+              <select id="course-name-input" name="courseName">
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="day-of-week-input">Day of Week:</label>
+              <select id="day-of-week-input" name="dayOfWeek">
+                <option value="monday">Monday</option>
+                <option value="tuesday">Tuesday</option>
+                <option value="wednesday">Wednesday</option>
+                <option value="thursday">Thursday</option>
+                <option value="friday">Friday</option>
+                <option value="saturday">Saturday</option>
+                <option value="sunday">Sunday</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="assignment-description-input">Assignment Description:</label>
+              <textarea id="assignment-description-input" name="assignmentDescription" rows="4"></textarea>
+            </div>
+            <div class="form-action">
+              <button type="submit" class="submit-btn">Add Assignment</button>
+            </div>
+          </form>
+        </section>
         
         
           <!-- Review Section -->
