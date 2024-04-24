@@ -115,6 +115,7 @@ const dashboardButton = document.getElementById("nav-dashboard");
 const classNavReview = document.getElementById("class-review-nav");
 const classHomeButton = document.getElementById("class-home-nav");
 
+
 //tracks what course were currently in
 let currCourse =''; 
 
@@ -331,7 +332,7 @@ document.addEventListener("DOMContentLoaded", () => {
   .addEventListener("click", () => navigate("home-view"));
   document
   .getElementById("nav-assignment")
-  .addEventListener("click", () => navigate("#assignment-view"));
+  .addEventListener("click", () => navigate("assignment-view"));
 document
   .getElementById("nav-calendar")
   .addEventListener("click", () => navigate("#calendar-view"));
@@ -360,4 +361,5 @@ dashboardButton.addEventListener("click",() => {
   });
 
   
+
 
