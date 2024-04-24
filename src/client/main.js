@@ -73,41 +73,39 @@ const calendarInfo = [
 const reviewInfo = [
   {
     class: "CS220",
-    Beginner: ["linked lists","lecture 14"],
-    AlmostThere: ["recursion", "higher order function","lecture 12"],
-    Mastered: ["lecture 1, lecture 2 "]
-
+    Beginner: ["linked lists", "lecture 14"],
+    AlmostThere: ["recursion", "higher order function", "lecture 12"],
+    Mastered: ["lecture 1, lecture 2 "],
   },
   {
     class: "CS230",
     Beginner: ["Pointers", "Memory Allocation"],
     AlmostThere: ["C Syntax", "Dynamic Arrays"],
-    Mastered: ["Basic IO", "Control Structures"]
+    Mastered: ["Basic IO", "Control Structures"],
   },
   {
     class: "CS240",
     Beginner: ["Combinatorics", "Bayes' Theorem"],
     AlmostThere: ["Probability Distributions", "Expected Value"],
-    Mastered: ["Conditional Probability", "Independent Events"]
+    Mastered: ["Conditional Probability", "Independent Events"],
   },
   {
     class: "CS250",
     Beginner: ["Predicate Logic", "Set Theory"],
     AlmostThere: ["Combinatorics", "Boolean Algebra"],
-    Mastered: ["Graph Theory", "Modular Arithmetic"]
+    Mastered: ["Graph Theory", "Modular Arithmetic"],
   },
   {
     class: "MATH235",
     Beginner: ["Linear Transformations", "Matrix Operations"],
     AlmostThere: ["Subspaces", "Dimension Theorem"],
-    Mastered: ["Determinants", "Inner Product Spaces"]
+    Mastered: ["Determinants", "Inner Product Spaces"],
   },
 ];
 
+import Store from "./store.js";
 
-import Store from './store.js';
-
-//Code for running dashboard and accessing classes 
+//Code for running dashboard and accessing classes
 const dashboard = document.getElementById("class-dashboard");
 const loadingElement = document.getElementById("loading-display");
 const currentClassNameElement = document.getElementById("current-class-name");
@@ -115,11 +113,14 @@ const dashboardButton = document.getElementById("nav-dashboard");
 const classNavReview = document.getElementById("class-review-nav");
 const classHomeButton = document.getElementById("class-home-nav");
 
+let currCourse = "";
 
-//tracks what course were currently in
-let currCourse =''; 
-
-//function to navigate between 
+/**
+ * Navigates between views by hiding all views and displaying the requested view.
+ *
+ * @param {string} viewId - The id of the view to navigate to.
+ * @returns {void}
+ */
 function navigate(viewId) {
   // Hide all views
   document.querySelectorAll(".view").forEach((view) => {
@@ -130,14 +131,21 @@ function navigate(viewId) {
   document.getElementById(viewId).style.display = "block";
 }
 
-const store = new Store('myDatabase'); // Initialize the Store class with a database name
+const store = new Store("myDatabase"); // Initialize the Store class with a database name
 
+/**
+ * Adds classes to the dashboard by creating elements and appending them to the dashboard.
+ *
+ * @returns {void}
+ */
 const addClasses = () => {
   loadingElement.textContent = "Loading classes...";
+  console.log("HERE!")
   setTimeout(() => {
     courseInfo.forEach((course) => {
       let courseElem = document.createElement("div");
-      courseElem.className = "bg-blue-100 hover:bg-blue-200 hover:cursor-pointer hover:shadow-xl hover:shadow-zinc-400 transition p-4 m-5 text-center rounded-md";
+      courseElem.className =
+        "bg-blue-100 hover:bg-blue-200 hover:cursor-pointer hover:shadow-xl hover:shadow-zinc-400 transition p-4 m-5 text-center rounded-md";
 
       let namePic = document.createElement("div");
       namePic.className = "justify-center flex flex-col text-center";
@@ -149,10 +157,11 @@ const addClasses = () => {
       let picContainer = document.createElement("div");
       picContainer.className = "rounded-full m-4 justify-center flex";
       let pic = document.createElement("img");
-      pic.src = `images/${course.id}.png`; 
+      pic.src = `images/${course.id}.png`;
       pic.height = "250";
       pic.width = "250";
-      pic.style = "border:2px solid black; margin-top: 10px; margin-bottom:10px; border-radius:10px";
+      pic.style =
+        "border:2px solid black; margin-top: 10px; margin-bottom:10px; border-radius:10px";
       picContainer.appendChild(pic);
 
       namePic.appendChild(picContainer);
@@ -161,14 +170,14 @@ const addClasses = () => {
       courseElem.appendChild(namePic);
 
       // Adds a click event listener to each course element
-      courseElem.addEventListener('click', async () => {
+      courseElem.addEventListener("click", async () => {
         currCourse = course;
         const currCourseName = course.name;
         console.log("course clicked was", currCourseName);
         await populateClass(course); // Call populateClass instead of your previous code
         updateCurrentClassName(course.name); // Update the class name in the navbar
-        classNavReview.classList.remove('hidden');
-        classHomeButton.classList.remove('hidden');
+        classNavReview.classList.remove("hidden");
+        classHomeButton.classList.remove("hidden");
         navigate("class-view");
       });
 
@@ -181,10 +190,23 @@ const addClasses = () => {
 
 addClasses();
 
+/**
+ * Updates the styling
+ *
+ * @param {string} className - The class style
+ * @returns {void}
+ */
 const updateCurrentClassName = (className) => {
-  currentClassNameElement.textContent = ": "+className; // Set the class name
+  currentClassNameElement.textContent = ": " + className; // Set the class name
 };
 
+
+/**
+ * Populating the class using data from pouchdb
+ *
+ * @param {string} course - The course name
+ * @returns {void}
+ */
 const populateClass = async (course) => {
   let courseToDoData;
   let courseReviewData;
@@ -207,21 +229,40 @@ const populateClass = async (course) => {
     } else {
       // Data not in PouchDB or local storage, generate it
       console.log(`Generating data for ${course.name}.`);
-      courseToDoData = calendarInfo.find(c => c.class === course.name);
-      courseReviewData = reviewInfo.find(c => c.class === course.name);
-      
+      courseToDoData = calendarInfo.find((c) => c.class === course.name);
+      courseReviewData = reviewInfo.find((c) => c.class === course.name);
+
       // Save the generated data to PouchDB and local storage
-      await store.saveData(course.name, { toDoData: courseToDoData, reviewData: courseReviewData });
-      
+      await store.saveData(course.name, {
+        toDoData: courseToDoData,
+        reviewData: courseReviewData,
+      });
+
       displayClassData(courseToDoData, courseReviewData);
     }
   }
 };
 
+
+/**
+ * Displaying class infromation 
+ *
+ * @param {string} courseToDoData -  ToDo list data of the course
+ * @param {string} courseReviewData -  Review data of the course
+ * @returns {void}
+ */
 const displayClassData = (courseToDoData, courseReviewData) => {
-  // Populate to do calendar 
-  const daysOfWeek = ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"];
-  daysOfWeek.forEach(day => {
+  // Populate to do calendar
+  const daysOfWeek = [
+    "monday",
+    "tuesday",
+    "wednesday",
+    "thursday",
+    "friday",
+    "saturday",
+    "sunday",
+  ];
+  daysOfWeek.forEach((day) => {
     const assignments = courseToDoData[day];
     const toDoElement = document.getElementById(`${day}-tasks`);
     if (assignments.length > 0) {
@@ -229,24 +270,24 @@ const displayClassData = (courseToDoData, courseReviewData) => {
     }
   });
 
-  // Populate review section 
-  const reviewContainer = document.getElementById('review-items-container');
-  reviewContainer.innerHTML = ''; // Clear previous content
+  // Populate review section
+  const reviewContainer = document.getElementById("review-items-container");
+  reviewContainer.innerHTML = ""; // Clear previous content
   const masteryLevels = ["Beginner", "AlmostThere", "Mastered"];
-  masteryLevels.forEach(level => {
+  masteryLevels.forEach((level) => {
     const reviews = courseReviewData[level];
     if (level === "Mastered") {
       return; // If the content has been mastered we can ignore
     }
     if (reviews && reviews.length > 0) {
-      reviews.forEach(reviewItem => {
-        const reviewElement = document.createElement('div');
-        reviewElement.className = 'review-item';
-        const reviewTitle = document.createElement('h3');
+      reviews.forEach((reviewItem) => {
+        const reviewElement = document.createElement("div");
+        reviewElement.className = "review-item";
+        const reviewTitle = document.createElement("h3");
         reviewTitle.textContent = reviewItem;
-        const reviewStatus = document.createElement('span');
+        const reviewStatus = document.createElement("span");
         reviewStatus.className = `status ${level.toLowerCase()}`;
-        reviewStatus.textContent = level.replace(/([A-Z])/g, ' $1').trim();
+        reviewStatus.textContent = level.replace(/([A-Z])/g, " $1").trim();
         reviewElement.appendChild(reviewTitle);
         reviewElement.appendChild(reviewStatus);
         reviewContainer.appendChild(reviewElement);
@@ -255,6 +296,12 @@ const displayClassData = (courseToDoData, courseReviewData) => {
   });
 };
 
+/**
+ * Displaying class review information
+ *
+ * @param {string} courseToDoData -  The selected course to review
+ * @returns {void}
+ */
 const populateClassReview = async (course) => {
   // Check if review data is saved in local storage or PouchDB
   const localReviewData = await store.getData(course.name);
@@ -262,8 +309,8 @@ const populateClassReview = async (course) => {
     // If review data is found in local storage or PouchDB, use it
     displayReviewData(localReviewData.reviewData);
   } else {
-    // If review data is not found in local storage or PouchDB, generate page 
-    const courseReviewData = reviewInfo.find(c => c.class === course.name);
+    // If review data is not found in local storage or PouchDB, generate page
+    const courseReviewData = reviewInfo.find((c) => c.class === course.name);
     if (courseReviewData) {
       displayReviewData(courseReviewData);
     } else {
@@ -275,21 +322,27 @@ const populateClassReview = async (course) => {
   navigate("class-review-view");
 };
 
+/**
+ * Displaying review data
+ *
+ * @param {string} reviewData -  The selected reviewData
+ * @returns {void}
+ */
 const displayReviewData = (reviewData) => {
-  const reviewContainer = document.getElementById('reviewPage-items-container');
-  reviewContainer.innerHTML = ''; // Clear previous content
+  const reviewContainer = document.getElementById("reviewPage-items-container");
+  reviewContainer.innerHTML = ""; // Clear previous content
   const masteryLevels = ["Beginner", "AlmostThere", "Mastered"];
-  masteryLevels.forEach(level => {
+  masteryLevels.forEach((level) => {
     const reviews = reviewData[level];
     if (reviews && reviews.length > 0) {
-      reviews.forEach(reviewItem => {
-        const reviewElement = document.createElement('div');
-        reviewElement.className = 'review-item';
-        const reviewTitle = document.createElement('h3');
+      reviews.forEach((reviewItem) => {
+        const reviewElement = document.createElement("div");
+        reviewElement.className = "review-item";
+        const reviewTitle = document.createElement("h3");
         reviewTitle.textContent = reviewItem;
-        const reviewStatus = document.createElement('span');
+        const reviewStatus = document.createElement("span");
         reviewStatus.className = `status ${level.toLowerCase()}`;
-        reviewStatus.textContent = level.replace(/([A-Z])/g, ' $1').trim();
+        reviewStatus.textContent = level.replace(/([A-Z])/g, " $1").trim();
         reviewElement.appendChild(reviewTitle);
         reviewElement.appendChild(reviewStatus);
         reviewContainer.appendChild(reviewElement);
@@ -298,12 +351,15 @@ const displayReviewData = (reviewData) => {
   });
 };
 
-
-// Function to populate the course select input
+/**
+ * Populates the course select input based on the available course information.
+ *
+ * @returns {void}
+ */
 function populateCourseSelect() {
-  const courseSelect = document.getElementById('course-name-input');
-  courseInfo.forEach(course => {
-    let option = document.createElement('option');
+  const courseSelect = document.getElementById("course-name-input");
+  courseInfo.forEach((course) => {
+    let option = document.createElement("option");
     option.value = course.name;
     option.textContent = course.name;
     courseSelect.appendChild(option);
@@ -312,8 +368,18 @@ function populateCourseSelect() {
 
 populateCourseSelect();
 
+/**
+ * Adds an assignment to the calendar for the specified course on the specified day of the week.
+ *
+ * @param {string} courseName The name of the course.
+ * @param {string} dayOfWeek The day of the week (e.g., "Monday", "Tuesday").
+ * @param {string} assignmentDescription The description of the assignment.
+ * @returns {void}
+ */
 function addAssignmentToCalendar(courseName, dayOfWeek, assignmentDescription) {
-  const courseCalendar = calendarInfo.find(course => course.class === courseName);
+  const courseCalendar = calendarInfo.find(
+    (course) => course.class === courseName
+  );
   if (courseCalendar) {
     if (courseCalendar[dayOfWeek]) {
       courseCalendar[dayOfWeek].push(assignmentDescription);
@@ -323,43 +389,75 @@ function addAssignmentToCalendar(courseName, dayOfWeek, assignmentDescription) {
   }
 }
 
-//Code for for handling multi page view
-
+/**
+ * Event listener setup for multi-views
+ *
+ * @listens DOMContentLoaded
+ * @returns {void}
+ */
 document.addEventListener("DOMContentLoaded", () => {
   navigate("home-view");
   document
-  .getElementById("nav-dashboard")
-  .addEventListener("click", () => navigate("home-view"));
+    .getElementById("nav-dashboard")
+    .addEventListener("click", () => navigate("home-view"));
   document
-  .getElementById("nav-assignment")
-  .addEventListener("click", () => navigate("assignment-view"));
-document
-  .getElementById("nav-calendar")
-  .addEventListener("click", () => navigate("#calendar-view"));
+    .getElementById("nav-assignment")
+    .addEventListener("click", () => navigate("assignment-view"));
+  document
+    .getElementById("nav-calendar")
+    .addEventListener("click", () => navigate("#calendar-view"));
 
-// Initialize with the home view
-navigate("home-view");
+  // Initialize with the home view
+  navigate("home-view");
 });
 
-dashboardButton.addEventListener("click",() => {
-  classNavReview.classList.add('hidden');
-  classHomeButton.classList.add('hidden');
-  currentClassNameElement.textContent = ': Class Dashboard'})
+/**
+ * Event listener setup for dashboard
+ *
+ * @listens click
+ * @returns {void}
+ */
+dashboardButton.addEventListener("click", () => {
+  classNavReview.classList.add("hidden");
+  classHomeButton.classList.add("hidden");
+  currentClassNameElement.textContent = ": Class Dashboard";
+});
 
-  classHomeButton.addEventListener('click', () => navigate("class-view"))
+/**
+ * Event listener setup for class home button
+ *
+ * @listens click
+ * @returns {void}
+ */
+classHomeButton.addEventListener("click", () => navigate("class-view"));
 
-  classNavReview.addEventListener('click',() => {populateClassReview(currCourse)});
+/**
+ * Event listener setup for class nav review
+ *
+ * @listens click
+ * @returns {void}
+ */
+classNavReview.addEventListener("click", () => {
+  populateClassReview(currCourse);
+});
 
-  document.getElementById('add-assignment-form').addEventListener('submit', (event) => {
+/**
+ * Event listener setup to handle form submission for adding assignments to the calendar.
+ *
+ * @listens submit
+ * @param {Event} event - The submit event.
+ * @returns {void}
+ */
+document
+  .getElementById("add-assignment-form")
+  .addEventListener("submit", (event) => {
     event.preventDefault();
-    const courseName = document.getElementById('course-name-input').value;
-    const dayOfWeek = document.getElementById('day-of-week-input').value;
-    const assignmentDescription = document.getElementById('assignment-description-input').value;
+    const courseName = document.getElementById("course-name-input").value;
+    const dayOfWeek = document.getElementById("day-of-week-input").value;
+    const assignmentDescription = document.getElementById(
+      "assignment-description-input"
+    ).value;
     addAssignmentToCalendar(courseName, dayOfWeek, assignmentDescription);
-    document.getElementById('add-assignment-form').reset();
-    alert('Assignment added successfully!');
+    document.getElementById("add-assignment-form").reset();
+    alert("Assignment added successfully!");
   });
-
-  
-
-

@@ -19,19 +19,19 @@
     </nav> -->
 
       <!-- Navigation bar, logo, etc. -->
-      
+
       <nav
         class="block items-center justify-center text-center w-full p-5 mb-2 px-6 py-5 md:sticky top-0 backdrop-blur text-4xl font-medium bg-red-900"
         id="navbar"
       >
-      
-
         <div
           class="sm:justify-between justify-center sm:flex-col md:flex lg:flex-row items-center"
         >
           <h1 class="text-3xl text-white p-7">
             <strong>Academix</strong>
-            <span id="current-class-name" class="text-white text-1.7xlg">: Class Dashboard</span>
+            <span id="current-class-name" class="text-white text-1.7xlg"
+              >: Class Dashboard</span
+            >
           </h1>
           <div class="justify-center">
             <!-- Medium to large screen nav bar -->
@@ -61,12 +61,20 @@
                 >
               </li>
 
-             <!-- Class-specific Links (initially hidden) -->
-             <li class="mr-6 hidden" id="class-home-nav">
-              <a class="block p-2 hover:bg-neutral-300 bg-neutral-200 text-sm text-black rounded-xl" href="#class/home">Class Home</a>
-            </li>
-             <li class="mr-6 hidden" id="class-review-nav">
-               <a class="block p-2 hover:bg-neutral-300 bg-neutral-200 text-sm text-black rounded-xl" href="#class/review">Review All</a>
+              <!-- Class-specific Links (initially hidden) -->
+              <li class="mr-6 hidden" id="class-home-nav">
+                <a
+                  class="block p-2 hover:bg-neutral-300 bg-neutral-200 text-sm text-black rounded-xl"
+                  href="#class/home"
+                  >Class Home</a
+                >
+              </li>
+              <li class="mr-6 hidden" id="class-review-nav">
+                <a
+                  class="block p-2 hover:bg-neutral-300 bg-neutral-200 text-sm text-black rounded-xl"
+                  href="#class/review"
+                  >Review All</a
+                >
               </li>
             </ul>
 
@@ -98,136 +106,136 @@
         </div>
       </nav>
 
-
-
       <main class="h-fit m-5">
         <!-- Main content of the document -->
 
         <!-- Start of the Views Container-->
-        <div id="views" >
+        <div id="views">
           <div id="home-view" class="view">
-
-        <!-- Dashboard Div -->
-        <div
-          class="justify-start grid lg:grid-cols-4 md:grid-cols-3 grid-cols-1"
-          id="class-dashboard"
-        >
-        </div>
-        <h1 id="loading-display" class="text-center text-xl py-3 items-center h-[50vh]"></h1>
-        <div class="text-center my-7">
-          <a
-            class="text-black text-center mb-2 hover:bg-neutral-300 hover:scale-105 bg-neutral-100 rounded-full animate p-3"
-            href="#top"
-          >
-            Go back to top
-          </a>
-        </div>
-
-        </div>
-
-        <!-- Class page view setup -->
-        <div id="class-view" class="view" style="display: none;">
-          
-          <!-- To-Do List Section -->
-          <section id="to-do-section" class="to-do-container">
-            <h2 class="section-title">To-Do this week</h2>
-            <table class="to-do-table">
-              <tr class="days-of-week">
-                <!-- To-Do List Headers -->
-                <th id="monday-header" class="bg-red-900">Monday</th>
-                <th id="tuesday-header">Tuesday</th>
-                <th id="wednesday-header" class="bg-red-900">Wednesday</th>
-                <th id="thursday-header">Thursday</th>
-                <th id="friday-header" class="bg-red-900">Friday</th>
-                <th id="saturday-header">Saturday</th>
-                <th id="sunday-header" class="bg-red-900">Saturday</th>
-              </tr>
-
-              <!-- To-Do List task id's -->
-              <tr class="to-do-items">
-                <td id="monday-tasks" class="task"></td> 
-                <td id="tuesday-tasks" class="task"></td> 
-                <td id="wednesday-tasks" class="task"></td> 
-                <td id="thursday-tasks" class="task"></td> 
-                <td id="friday-tasks" class="task"></td> 
-                <td id="saturday-tasks" class="task"></td>
-                <td id="sunday-tasks" class="task"></td> 
-              </tr>
-            </table>
-          </section>
-
-          
-        
-        
-          <!-- Review Section -->
-         <section id="review-section" class="review-container">
-  <h2 class="section-title">Review</h2>
-  <div id="review-items-container">
-    <!-- Review items will be populated here by JavaScript -->
-  </div>
-</section>
-        </div>
-        <!-- End of Class Page View -->
-
-        <!-- Class Review View -->
-        <div id="class-review-view" class="view" style="display: none;" >
-          <section id="review-page" class="review-container">
-            <h2 class="section-title">All Material to Review</h2>
-            <div id="reviewPage-items-container">
-              <!-- Review items will be populated here by JavaScript -->
+            <!-- Dashboard Div -->
+            <div
+              class="justify-start grid lg:grid-cols-4 md:grid-cols-3 grid-cols-1"
+              id="class-dashboard"
+            ></div>
+            <h1
+              id="loading-display"
+              class="text-center text-xl py-3 items-center h-[50vh]"
+            ></h1>
+            <div class="text-center my-7">
+              <a
+                class="text-black text-center mb-2 hover:bg-neutral-300 hover:scale-105 bg-neutral-100 rounded-full animate p-3"
+                href="#top"
+              >
+                Go back to top
+              </a>
             </div>
-          </section>
-        </div>
-        <!--End of Class review page-->
-
-        <div id="assignment-view" class="view" style="display: none">
-        <section id="add-assignment-section" class="add-assignment-container">
-          <h2 class="section-title">Add Assignment</h2>
-          <form id="add-assignment-form" class="add-assignment-form">
-            <div class="form-group">
-              <label for="course-name-input">Course Name:</label>
-              <select id="course-name-input" name="courseName">
-              </select>
-            </div>
-            <div class="form-group">
-              <label for="day-of-week-input">Day of Week:</label>
-              <select id="day-of-week-input" name="dayOfWeek">
-                <option value="monday">Monday</option>
-                <option value="tuesday">Tuesday</option>
-                <option value="wednesday">Wednesday</option>
-                <option value="thursday">Thursday</option>
-                <option value="friday">Friday</option>
-                <option value="saturday">Saturday</option>
-                <option value="sunday">Sunday</option>
-              </select>
-            </div>
-            <div class="form-group">
-              <label for="assignment-description-input">Assignment Description:</label>
-              <textarea id="assignment-description-input" name="assignmentDescription" rows="4"></textarea>
-            </div>
-            <div class="form-action">
-              <button type="submit" class="submit-btn">Add Assignment</button>
-            </div>
-          </form>
-        </section>
-      </div>
-      
-        <!--End of view selector-->
-        </div>
-        
-        <footer>
-          <div
-            class="bg-black p-10 text-neutral-200 justify-center bottom-0 flex"
-          >
-            <p>© 2024 Academix. All rights reserved.</p>
           </div>
-        </footer>
-        </div>
 
+          <!-- Class page view setup -->
+          <div id="class-view" class="view" style="display: none">
+            <!-- To-Do List Section -->
+            <section id="to-do-section" class="to-do-container">
+              <h2 class="section-title">To-Do this week</h2>
+              <table class="to-do-table">
+                <tr class="days-of-week">
+                  <!-- To-Do List Headers -->
+                  <th id="monday-header" class="bg-red-900">Monday</th>
+                  <th id="tuesday-header">Tuesday</th>
+                  <th id="wednesday-header" class="bg-red-900">Wednesday</th>
+                  <th id="thursday-header">Thursday</th>
+                  <th id="friday-header" class="bg-red-900">Friday</th>
+                  <th id="saturday-header">Saturday</th>
+                  <th id="sunday-header" class="bg-red-900">Saturday</th>
+                </tr>
+
+                <!-- To-Do List task id's -->
+                <tr class="to-do-items">
+                  <td id="monday-tasks" class="task"></td>
+                  <td id="tuesday-tasks" class="task"></td>
+                  <td id="wednesday-tasks" class="task"></td>
+                  <td id="thursday-tasks" class="task"></td>
+                  <td id="friday-tasks" class="task"></td>
+                  <td id="saturday-tasks" class="task"></td>
+                  <td id="sunday-tasks" class="task"></td>
+                </tr>
+              </table>
+            </section>
+
+            <!-- Review Section -->
+            <section id="review-section" class="review-container">
+              <h2 class="section-title">Review</h2>
+              <div id="review-items-container">
+                <!-- Review items will be populated here by JavaScript -->
+              </div>
+            </section>
+          </div>
+          <!-- End of Class Page View -->
+
+          <!-- Class Review View -->
+          <div id="class-review-view" class="view" style="display: none">
+            <section id="review-page" class="review-container">
+              <h2 class="section-title">All Material to Review</h2>
+              <div id="reviewPage-items-container">
+                <!-- Review items will be populated here by JavaScript -->
+              </div>
+            </section>
+          </div>
+          <!--End of Class review page-->
+
+          <div id="assignment-view" class="view" style="display: none">
+            <section
+              id="add-assignment-section"
+              class="add-assignment-container"
+            >
+              <h2 class="section-title">Add Assignment</h2>
+              <form id="add-assignment-form" class="add-assignment-form">
+                <div class="form-group">
+                  <label for="course-name-input">Course Name:</label>
+                  <select id="course-name-input" name="courseName"></select>
+                </div>
+                <div class="form-group">
+                  <label for="day-of-week-input">Day of Week:</label>
+                  <select id="day-of-week-input" name="dayOfWeek">
+                    <option value="monday">Monday</option>
+                    <option value="tuesday">Tuesday</option>
+                    <option value="wednesday">Wednesday</option>
+                    <option value="thursday">Thursday</option>
+                    <option value="friday">Friday</option>
+                    <option value="saturday">Saturday</option>
+                    <option value="sunday">Sunday</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="assignment-description-input"
+                    >Assignment Description:</label
+                  >
+                  <textarea
+                    id="assignment-description-input"
+                    name="assignmentDescription"
+                    rows="4"
+                  ></textarea>
+                </div>
+                <div class="form-action">
+                  <button type="submit" class="submit-btn">
+                    Add Assignment
+                  </button>
+                </div>
+              </form>
+            </section>
+          </div>
+
+          <!--End of view selector-->
+        </div>
       </main>
       <!-- Footer section -->
-      
-      
+
+      <footer>
+        <div
+          class="bg-black p-10 text-neutral-200 justify-center bottom-0 flex"
+        >
+          <p>© 2024 Academix. All rights reserved.</p>
+        </div>
+      </footer>
     </div>
   </body>
 </html>

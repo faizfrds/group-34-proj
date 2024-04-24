@@ -1,11 +1,22 @@
-import PouchDBManager from "pouchdb";
+import PouchDBManager from "pouchdb"
 
 class Store {
+  /**
+   * Creates an instance of Store.
+   *
+   * @param {string} dbName The name of the PouchDB database.
+   */
   constructor(dbName) {
     this.pouchDB = new PouchDBManager(dbName);
   }
 
-  // Save data to both PouchDB and local storage
+  /**
+   * Saves data to both PouchDB and local storage.
+   *
+   * @param {string} key The key under which the data will be saved.
+   * @param {any} data The data to be saved.
+   * @returns {Promise<void>} A Promise that resolves when data is successfully saved.
+   */
   async saveData(key, data) {
     try {
       // Save to PouchDB
@@ -18,7 +29,13 @@ class Store {
     }
   }
 
-  // Get data from both PouchDB and local storage
+  //
+  /**
+   * Get data from both PouchDB and local storage
+   *
+   * @param {string} key The key under which the data is stored.
+   * @returns {Promise<any>} A Promise that resolves with the retrieved data, or null if data is not found.
+   */
   async getData(key) {
     try {
       // Try to get from PouchDB first
@@ -39,7 +56,12 @@ class Store {
     }
   }
 
-  // Delete data from both PouchDB and local storage
+  /**
+   * Deletes data from both PouchDB and local storage.
+   *
+   * @param {string} key The key under which the data is stored.
+   * @returns {Promise<void>} A Promise that resolves when data is successfully deleted.
+   */
   async deleteData(key) {
     try {
       // Delete from PouchDB
@@ -54,4 +76,3 @@ class Store {
 }
 
 export default Store;
-  
