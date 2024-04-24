@@ -72,51 +72,53 @@ const calendarInfo = [
 
 const reviewInfo = [
   {
-  class: "CS220",
-  Beginner: ["linked lists","lecture 14"],
-  AlmostThere: ["recursion", "higher order function","lecture 12"],
-  Mastered: ["lecture 1, lecture 2 "]
+    class: "CS220",
+    Beginner: ["linked lists","lecture 14"],
+    AlmostThere: ["recursion", "higher order function","lecture 12"],
+    Mastered: ["lecture 1, lecture 2 "]
 
-},
-{
-  class: "CS230",
-  Beginner: ["Pointers", "Memory Allocation"],
-  AlmostThere: ["C Syntax", "Dynamic Arrays"],
-  Mastered: ["Basic IO", "Control Structures"]
-},
-{
-  class: "CS240",
-  Beginner: ["Combinatorics", "Bayes' Theorem"],
-  AlmostThere: ["Probability Distributions", "Expected Value"],
-  Mastered: ["Conditional Probability", "Independent Events"]
-},
-{
-  class: "CS250",
-  Beginner: ["Predicate Logic", "Set Theory"],
-  AlmostThere: ["Combinatorics", "Boolean Algebra"],
-  Mastered: ["Graph Theory", "Modular Arithmetic"]
-},
-{
-  class: "MATH235",
-  Beginner: ["Linear Transformations", "Matrix Operations"],
-  AlmostThere: ["Subspaces", "Dimension Theorem"],
-  Mastered: ["Determinants", "Inner Product Spaces"]
-},
+  },
+  {
+    class: "CS230",
+    Beginner: ["Pointers", "Memory Allocation"],
+    AlmostThere: ["C Syntax", "Dynamic Arrays"],
+    Mastered: ["Basic IO", "Control Structures"]
+  },
+  {
+    class: "CS240",
+    Beginner: ["Combinatorics", "Bayes' Theorem"],
+    AlmostThere: ["Probability Distributions", "Expected Value"],
+    Mastered: ["Conditional Probability", "Independent Events"]
+  },
+  {
+    class: "CS250",
+    Beginner: ["Predicate Logic", "Set Theory"],
+    AlmostThere: ["Combinatorics", "Boolean Algebra"],
+    Mastered: ["Graph Theory", "Modular Arithmetic"]
+  },
+  {
+    class: "MATH235",
+    Beginner: ["Linear Transformations", "Matrix Operations"],
+    AlmostThere: ["Subspaces", "Dimension Theorem"],
+    Mastered: ["Determinants", "Inner Product Spaces"]
+  },
 ];
 
 
+import Store from './store.js';
 
 //Code for running dashboard and accessing classes 
 const dashboard = document.getElementById("class-dashboard");
 const loadingElement = document.getElementById("loading-display");
 const currentClassNameElement = document.getElementById("current-class-name");
-const dashboardButton = document.getElementById("nav-dashboard")
-const classNavReview = document.getElementById("class-review-nav")
-const classHomeButton = document.getElementById("class-home-nav")
+const dashboardButton = document.getElementById("nav-dashboard");
+const classNavReview = document.getElementById("class-review-nav");
+const classHomeButton = document.getElementById("class-home-nav");
 
 //tracks what course were currently in
-let currCourse ='' 
+let currCourse =''; 
 
+//function to navigate between 
 function navigate(viewId) {
   // Hide all views
   document.querySelectorAll(".view").forEach((view) => {
@@ -127,6 +129,7 @@ function navigate(viewId) {
   document.getElementById(viewId).style.display = "block";
 }
 
+const store = new Store('myDatabase'); // Initialize the Store class with a database name
 
 const addClasses = () => {
   loadingElement.textContent = "Loading classes...";
@@ -157,15 +160,15 @@ const addClasses = () => {
       courseElem.appendChild(namePic);
 
       // Adds a click event listener to each course element
-      courseElem.addEventListener('click', () => {
-        currCourse = course
-        const currCourseName = course.name
-        console.log("course clicked was",currCourseName)
-        populateClass(course)
+      courseElem.addEventListener('click', async () => {
+        currCourse = course;
+        const currCourseName = course.name;
+        console.log("course clicked was", currCourseName);
+        await populateClass(course); // Call populateClass instead of your previous code
         updateCurrentClassName(course.name); // Update the class name in the navbar
         classNavReview.classList.remove('hidden');
         classHomeButton.classList.remove('hidden');
-        navigate("class-view")
+        navigate("class-view");
       });
 
       dashboard.appendChild(courseElem);
@@ -175,28 +178,47 @@ const addClasses = () => {
   }, Math.random() * 2000);
 };
 
-
 addClasses();
 
 const updateCurrentClassName = (className) => {
   currentClassNameElement.textContent = ": "+className; // Set the class name
 };
 
-// to do list elements 
-const toDoMonday = document.getElementById("monday-tasks")
-const toDoTuesday = document.getElementById("tuesday-tasks")
-const toDoWednesday = document.getElementById("wednesday-tasks")
-const toDoThursday = document.getElementById("thursday-tasks")
-const toDoFriday = document.getElementById("friday-tasks")
-const toDoSaturday = document.getElementById("saturday-tasks")
-const toDoSunday = document.getElementById("sunday-tasks")
+const populateClass = async (course) => {
+  let courseToDoData;
+  let courseReviewData;
 
+  // Check if class data is saved in PouchDB
+  const isDataInPouchDB = await store.getData(course.name);
+  if (isDataInPouchDB) {
+    console.log(`Loading ${course.name} data from PouchDB.`);
+    courseToDoData = isDataInPouchDB.toDoData;
+    courseReviewData = isDataInPouchDB.reviewData;
+    displayClassData(courseToDoData, courseReviewData);
+  } else {
+    // Check if class data is saved in local storage
+    const isDataInLocalStorage = await store.getData(course.name);
+    if (isDataInLocalStorage) {
+      console.log(`Loading ${course.name} data from local storage.`);
+      courseToDoData = isDataInLocalStorage.toDoData;
+      courseReviewData = isDataInLocalStorage.reviewData;
+      displayClassData(courseToDoData, courseReviewData);
+    } else {
+      // Data not in PouchDB or local storage, generate it
+      console.log(`Generating data for ${course.name}.`);
+      courseToDoData = calendarInfo.find(c => c.class === course.name);
+      courseReviewData = reviewInfo.find(c => c.class === course.name);
+      
+      // Save the generated data to PouchDB and local storage
+      await store.saveData(course.name, { toDoData: courseToDoData, reviewData: courseReviewData });
+      
+      displayClassData(courseToDoData, courseReviewData);
+    }
+  }
+};
 
-const populateClass= (course) => {
-  //populate class page by filling in to-Do list and review section with course specific data 
-
-  //Populate to do calendar 
-  const courseToDoData = calendarInfo.find(c => c.class === course.name);
+const displayClassData = (courseToDoData, courseReviewData) => {
+  // Populate to do calendar 
   const daysOfWeek = ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"];
   daysOfWeek.forEach(day => {
     const assignments = courseToDoData[day];
@@ -206,70 +228,76 @@ const populateClass= (course) => {
     }
   });
 
-  //populate review section 
-  
-const courseReviewData = reviewInfo.find(c => c.class === course.name)
-const reviewContainer = document.getElementById('review-items-container');
-reviewContainer.innerHTML = ''; // Clear previous content
-const masteryLevels = ["Beginner","AlmostThere","Mastered"]
-masteryLevels.forEach(level => {
-  const reviews = courseReviewData[level];
-  if(level === "Mastered"){return} //If the content has been mastered we can ignore
-  if (reviews && reviews.length > 0)
-   {
-    reviews.forEach(reviewItem => {
-      const reviewElement = document.createElement('div');
-      reviewElement.className = 'review-item';
-
-      const reviewTitle = document.createElement('h3');
-      reviewTitle.textContent = reviewItem;
-
-      const reviewStatus = document.createElement('span');
-      reviewStatus.className = `status ${level.toLowerCase()}`;
-      reviewStatus.textContent = level.replace(/([A-Z])/g, ' $1').trim(); 
-
-      reviewElement.appendChild(reviewTitle);
-      reviewElement.appendChild(reviewStatus);
-
-      reviewContainer.appendChild(reviewElement);
-    });
-  }
-});
+  // Populate review section 
+  const reviewContainer = document.getElementById('review-items-container');
+  reviewContainer.innerHTML = ''; // Clear previous content
+  const masteryLevels = ["Beginner", "AlmostThere", "Mastered"];
+  masteryLevels.forEach(level => {
+    const reviews = courseReviewData[level];
+    if (level === "Mastered") {
+      return; // If the content has been mastered we can ignore
+    }
+    if (reviews && reviews.length > 0) {
+      reviews.forEach(reviewItem => {
+        const reviewElement = document.createElement('div');
+        reviewElement.className = 'review-item';
+        const reviewTitle = document.createElement('h3');
+        reviewTitle.textContent = reviewItem;
+        const reviewStatus = document.createElement('span');
+        reviewStatus.className = `status ${level.toLowerCase()}`;
+        reviewStatus.textContent = level.replace(/([A-Z])/g, ' $1').trim();
+        reviewElement.appendChild(reviewTitle);
+        reviewElement.appendChild(reviewStatus);
+        reviewContainer.appendChild(reviewElement);
+      });
+    }
+  });
 };
 
-const populateClassReview = (course) => {
-  //populate review page section 
-const courseReviewData = reviewInfo.find(c => c.class === course.name)
-const reviewContainer = document.getElementById('reviewPage-items-container');
-reviewContainer.innerHTML = ''; // Clear previous content
-const masteryLevels = ["Beginner","AlmostThere","Mastered"]
-masteryLevels.forEach(level => {
-  const reviews = courseReviewData[level];
-  if (reviews && reviews.length > 0)
-   {
-    reviews.forEach(reviewItem => {
-      const reviewElement = document.createElement('div');
-      reviewElement.className = 'review-item';
-
-      const reviewTitle = document.createElement('h3');
-      reviewTitle.textContent = reviewItem;
-
-      const reviewStatus = document.createElement('span');
-      reviewStatus.className = `status ${level.toLowerCase()}`;
-      reviewStatus.textContent = level.replace(/([A-Z])/g, ' $1').trim(); 
-
-      reviewElement.appendChild(reviewTitle);
-      reviewElement.appendChild(reviewStatus);
-
-      reviewContainer.appendChild(reviewElement);
-    });
+const populateClassReview = async (course) => {
+  // Check if review data is saved in local storage or PouchDB
+  const localReviewData = await store.getData(course.name);
+  if (localReviewData && localReviewData.reviewData) {
+    // If review data is found in local storage or PouchDB, use it
+    displayReviewData(localReviewData.reviewData);
+  } else {
+    // If review data is not found in local storage or PouchDB, generate page 
+    const courseReviewData = reviewInfo.find(c => c.class === course.name);
+    if (courseReviewData) {
+      displayReviewData(courseReviewData);
+    } else {
+      console.error(`Review data not found for ${course.name}`);
+    }
   }
-});
-navigate("class-review-view")
+
+  // Navigate to the review view
+  navigate("class-review-view");
 };
 
+const displayReviewData = (reviewData) => {
+  const reviewContainer = document.getElementById('reviewPage-items-container');
+  reviewContainer.innerHTML = ''; // Clear previous content
+  const masteryLevels = ["Beginner", "AlmostThere", "Mastered"];
+  masteryLevels.forEach(level => {
+    const reviews = reviewData[level];
+    if (reviews && reviews.length > 0) {
+      reviews.forEach(reviewItem => {
+        const reviewElement = document.createElement('div');
+        reviewElement.className = 'review-item';
+        const reviewTitle = document.createElement('h3');
+        reviewTitle.textContent = reviewItem;
+        const reviewStatus = document.createElement('span');
+        reviewStatus.className = `status ${level.toLowerCase()}`;
+        reviewStatus.textContent = level.replace(/([A-Z])/g, ' $1').trim();
+        reviewElement.appendChild(reviewTitle);
+        reviewElement.appendChild(reviewStatus);
+        reviewContainer.appendChild(reviewElement);
+      });
+    }
+  });
+};
 
-//Code for handling multi page view
+//Code for for handling multi page view
 
 document.addEventListener("DOMContentLoaded", () => {
   navigate("home-view");
@@ -293,7 +321,6 @@ dashboardButton.addEventListener("click",() => {
   currentClassNameElement.textContent = ': Class Dashboard'})
 
   classHomeButton.addEventListener('click', () => navigate("class-view"))
-
 
   classNavReview.addEventListener('click',() => {populateClassReview(currCourse)});
 
