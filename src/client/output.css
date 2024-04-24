@@ -1425,3 +1425,67 @@ video {
     flex-direction: row;
   }
 }
+
+/* Style for the Add Assignment container */
+.add-assignment-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  padding: 20px;
+}
+
+/* Style for form elements to be centered */
+.add-assignment-form {
+  width: 100%;
+  max-width: 500px; 
+}
+
+/* Style for the form groups to add more space */
+.form-group {
+  margin-bottom: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center; 
+}
+
+/* Style for the form inputs and select elements in add assignment */
+#course-name-input,
+#day-of-week-input,
+#assignment-description-input {
+  width: 100%; 
+  padding: 10px;
+  margin-top: 5px; 
+  border: 1px solid #ccc; 
+  border-radius: 4px; 
+}
+
+/* Style for the submit button */
+.submit-btn {
+  padding: 10px 20px;
+  background-color: maroon; 
+  color: white; 
+  font-weight: bold;
+  border: 2px solid maroon; 
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 10px; 
+}
+
+.submit-btn:hover {
+  background-color: #800000; 
+  border-color: #800000;
+}
+
+
+@media (max-width: 768px) {
+  .add-assignment-form {
+    width: 90%;
+  }
+  
+  .add-assignment-container {
+    height: auto;
+    padding: 10px;
+  }
+}
