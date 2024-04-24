@@ -111,6 +111,21 @@ const dashboard = document.getElementById("class-dashboard");
 const loadingElement = document.getElementById("loading-display");
 const currentClassNameElement = document.getElementById("current-class-name");
 const dashboardButton = document.getElementById("nav-dashboard")
+const classNavReview = document.getElementById("class-review-nav")
+const classHomeButton = document.getElementById("class-home-nav")
+
+//tracks what course were currently in
+let currCourse ='' 
+
+function navigate(viewId) {
+  // Hide all views
+  document.querySelectorAll(".view").forEach((view) => {
+    view.style.display = "none";
+  });
+
+  // Show the requested view
+  document.getElementById(viewId).style.display = "block";
+}
 
 
 const addClasses = () => {
@@ -143,20 +158,13 @@ const addClasses = () => {
 
       // Adds a click event listener to each course element
       courseElem.addEventListener('click', () => {
-
-        //Initialize navigate function 
-        function navigate(viewId) {
-          // Hide all views
-          document.querySelectorAll(".view").forEach((view) => {
-            view.style.display = "none";
-          });
-          // Show the requested view
-          document.getElementById(viewId).style.display = "block";
-        }
-        const currCourse = course.name
-        console.log("course clicked was",currCourse)
+        currCourse = course
+        const currCourseName = course.name
+        console.log("course clicked was",currCourseName)
         populateClass(course)
         updateCurrentClassName(course.name); // Update the class name in the navbar
+        classNavReview.classList.remove('hidden');
+        classHomeButton.classList.remove('hidden');
         navigate("class-view")
       });
 
@@ -229,21 +237,42 @@ masteryLevels.forEach(level => {
 });
 };
 
+const populateClassReview = (course) => {
+  //populate review page section 
+const courseReviewData = reviewInfo.find(c => c.class === course.name)
+const reviewContainer = document.getElementById('reviewPage-items-container');
+reviewContainer.innerHTML = ''; // Clear previous content
+const masteryLevels = ["Beginner","AlmostThere","Mastered"]
+masteryLevels.forEach(level => {
+  const reviews = courseReviewData[level];
+  if (reviews && reviews.length > 0)
+   {
+    reviews.forEach(reviewItem => {
+      const reviewElement = document.createElement('div');
+      reviewElement.className = 'review-item';
+
+      const reviewTitle = document.createElement('h3');
+      reviewTitle.textContent = reviewItem;
+
+      const reviewStatus = document.createElement('span');
+      reviewStatus.className = `status ${level.toLowerCase()}`;
+      reviewStatus.textContent = level.replace(/([A-Z])/g, ' $1').trim(); 
+
+      reviewElement.appendChild(reviewTitle);
+      reviewElement.appendChild(reviewStatus);
+
+      reviewContainer.appendChild(reviewElement);
+    });
+  }
+});
+navigate("class-review-view")
+};
+
 
 //Code for for handling multi page view
 
 document.addEventListener("DOMContentLoaded", () => {
-  function navigate(viewId) {
-    // Hide all views
-    document.querySelectorAll(".view").forEach((view) => {
-      view.style.display = "none";
-    });
-
-    // Show the requested view
-    document.getElementById(viewId).style.display = "block";
-  }
   navigate("home-view");
-
   document
   .getElementById("nav-dashboard")
   .addEventListener("click", () => navigate("home-view"));
@@ -258,6 +287,13 @@ document
 navigate("home-view");
 });
 
-dashboardButton.addEventListener("click",() => currentClassNameElement.textContent = ': Class Dashboard')
+dashboardButton.addEventListener("click",() => {
+  classNavReview.classList.add('hidden');
+  classHomeButton.classList.add('hidden');
+  currentClassNameElement.textContent = ': Class Dashboard'})
 
+  classHomeButton.addEventListener('click', () => navigate("class-view"))
+
+
+  classNavReview.addEventListener('click',() => {populateClassReview(currCourse)});
 
