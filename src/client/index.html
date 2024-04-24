@@ -8,7 +8,6 @@
     <link rel="stylesheet" href="output.css" />
     <!-- JavaScript Files -->
     <script type="module" src="main.js" defer></script>
-    <script src="https://cdn.jsdelivr.net/npm/pouchdb@7.2.2/dist/pouchdb.min.js"></script>
   </head>
   <body>
     <div class="h-screen" id="top">
@@ -155,8 +154,32 @@
               </tr>
             </table>
           </section>
+
           
-          <section id="add-assignment-section" class="add-assignment-container">
+        
+        
+          <!-- Review Section -->
+         <section id="review-section" class="review-container">
+  <h2 class="section-title">Review</h2>
+  <div id="review-items-container">
+    <!-- Review items will be populated here by JavaScript -->
+  </div>
+</section>
+        </div>
+        <!-- End of Class Page View -->
+
+        <!-- Class Review View -->
+        <div id="class-review-view" class="view" style="display: none;" >
+          <section id="review-page" class="review-container">
+            <h2 class="section-title">All Material to Review</h2>
+            <div id="reviewPage-items-container">
+              <!-- Review items will be populated here by JavaScript -->
+            </div>
+          </section>
+        </div>
+        <!--End of Class review page-->
+
+        <section id="add-assignment-section" class="add-assignment-container">
           <h2 class="section-title">Add Assignment</h2>
           <form id="add-assignment-form" class="add-assignment-form">
             <div class="form-group">
@@ -185,30 +208,6 @@
             </div>
           </form>
         </section>
-        
-        
-          <!-- Review Section -->
-         <section id="review-section" class="review-container">
-  <h2 class="section-title">Review</h2>
-  <div id="review-items-container">
-    <!-- Review items will be populated here by JavaScript -->
-  </div>
-</section>
-        </div>
-        <!-- End of Class Page View -->
-
-        <!-- Class Review View -->
-        <div id="class-review-view" class="view" style="display: none;" >
-          <section id="review-page" class="review-container">
-            <h2 class="section-title">All Material to Review</h2>
-            <div id="reviewPage-items-container">
-              <!-- Review items will be populated here by JavaScript -->
-            </div>
-          </section>
-        </div>
-        <!--End of Class review page-->
-
-        
       
         <!--End of view selector-->
         </div>
