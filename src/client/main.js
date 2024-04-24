@@ -297,6 +297,29 @@ const displayReviewData = (reviewData) => {
   });
 };
 
+// Function to populate the course select input
+function populateCourseSelect() {
+  const courseSelect = document.getElementById('course-name-input');
+  courseInfo.forEach(course => {
+    let option = document.createElement('option');
+    option.value = course.name;
+    option.textContent = course.name;
+    courseSelect.appendChild(option);
+  });
+}
+
+populateCourseSelect();
+
+function addAssignmentToCalendar(courseName, dayOfWeek, assignmentDescription) {
+  const courseCalendar = calendarInfo.find(course => course.class === courseName);
+  if (courseCalendar) {
+    if (courseCalendar[dayOfWeek]) {
+      courseCalendar[dayOfWeek].push(assignmentDescription);
+    } else {
+      courseCalendar[dayOfWeek] = [assignmentDescription];
+    }
+  }
+}
 //Code for for handling multi page view
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -323,4 +346,24 @@ dashboardButton.addEventListener("click",() => {
   classHomeButton.addEventListener('click', () => navigate("class-view"))
 
   classNavReview.addEventListener('click',() => {populateClassReview(currCourse)});
+
+dashboardButton.addEventListener("click",() => {
+  classNavReview.classList.add('hidden');
+  classHomeButton.classList.add('hidden');
+  currentClassNameElement.textContent = ': Class Dashboard'})
+
+  classHomeButton.addEventListener('click', () => navigate("class-view"))
+
+
+  classNavReview.addEventListener('click',() => {populateClassReview(currCourse)});
+
+  document.getElementById('add-assignment-form').addEventListener('submit', (event) => {
+    event.preventDefault();
+    const courseName = document.getElementById('course-name-input').value;
+    const dayOfWeek = document.getElementById('day-of-week-input').value;
+    const assignmentDescription = document.getElementById('assignment-description-input').value;
+    addAssignmentToCalendar(courseName, dayOfWeek, assignmentDescription);
+    document.getElementById('add-assignment-form').reset();
+    alert('Assignment added successfully!');
+  });
 
