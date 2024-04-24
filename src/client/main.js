@@ -269,7 +269,7 @@ navigate("class-review-view")
 };
 
 
-//Code for for handling multi page view
+//Code for handling multi page view
 
 document.addEventListener("DOMContentLoaded", () => {
   navigate("home-view");
