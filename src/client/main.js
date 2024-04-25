@@ -157,9 +157,9 @@ const addClasses = () => {
       let picContainer = document.createElement("div");
       picContainer.className = "rounded-full m-4 justify-center flex";
       let pic = document.createElement("img");
-      pic.src = `images/${course.id}.png`;
-      pic.height = "250";
-      pic.width = "250";
+      pic.src = `images/${course.name}.png`;
+      pic.height = "400";
+      pic.width = "400";
       pic.style =
         "border:2px solid black; margin-top: 10px; margin-bottom:10px; border-radius:10px";
       picContainer.appendChild(pic);
