@@ -35,41 +35,41 @@
           </h1>
           <div class="justify-center">
             <!-- Medium to large screen nav bar -->
-            <ul class="font-medium hidden md:flex text-lg">
+            <ul class="font-medium md:flex text-lg grid grid-cols-2">
               <li class="mr-6">
                 <a
                   id="nav-dashboard"
-                  class="block p-2 hover:bg-neutral-300 bg-neutral-200 text-sm text-black rounded-xl"
-                  href="#/dashboard"
+                  class="block p-2 hover:bg-neutral-300 bg-neutral-200 text-sm text-black rounded-xl my-2"
+                  href="#dashboard"
                   >Dashboard</a
                 >
               </li>
               <li class="mr-6">
                 <a
                   id="nav-assignment"
-                  class="block p-2 hover:bg-neutral-300 bg-neutral-200 text-sm text-black rounded-xl"
-                  href="#application-parts"
+                  class="block p-2 hover:bg-neutral-300 bg-neutral-200 text-sm text-black rounded-xl my-2"
+                  href="#nav-assignment"
                   >Add Assignment</a
                 >
               </li>
               <li class="mr-6">
                 <a
                   id="nav-calendar"
-                  class="block p-2 hover:bg-neutral-300 bg-neutral-200 text-sm text-black rounded-xl"
-                  href="#data-requirement"
+                  class="block p-2 hover:bg-neutral-300 bg-neutral-200 text-sm text-black rounded-xl my-2"
+                  href="#calendar"
                   >Calendar</a
                 >
               </li>
 
               <!-- Class-specific Links (initially hidden) -->
-              <li class="mr-6 hidden" id="class-home-nav">
+              <li class="mr-6 my-2 hidden" id="class-home-nav">
                 <a
                   class="block p-2 hover:bg-neutral-300 bg-neutral-200 text-sm text-black rounded-xl"
                   href="#class/home"
                   >Class Home</a
                 >
               </li>
-              <li class="mr-6 hidden" id="class-review-nav">
+              <li class="mr-6 my-2 hidden" id="class-review-nav">
                 <a
                   class="block p-2 hover:bg-neutral-300 bg-neutral-200 text-sm text-black rounded-xl"
                   href="#class/review"
@@ -78,30 +78,6 @@
               </li>
             </ul>
 
-            <!-- Small screen nav bar -->
-            <div class="font-medium md:hidden grid grid-cols-2 text-lg">
-              <div class="mx-2">
-                <a
-                  class="block p-2 hover:bg-neutral-300 bg-neutral-200 text-sm text-black rounded-xl my-2"
-                  href="#dashboard"
-                  >Dashboard</a
-                >
-              </div>
-              <div class="mx-2">
-                <a
-                  class="block p-2 hover:bg-neutral-300 bg-neutral-200 text-sm text-black rounded-xl my-2"
-                  href="#appdivcation-parts"
-                  >Add Assignment</a
-                >
-              </div>
-              <div class="mx-2">
-                <a
-                  class="block p-2 hover:bg-neutral-300 bg-neutral-200 text-sm text-black rounded-xl my-2"
-                  href="#data-requirement"
-                  >Calendar</a
-                >
-              </div>
-            </div>
           </div>
         </div>
       </nav>
@@ -134,7 +110,7 @@
           <!-- Class page view setup -->
           <div id="class-view" class="view" style="display: none">
             <!-- To-Do List Section -->
-            <section id="to-do-section" class="to-do-container">
+            <section id="to-do-section" class="to-do-container" style="overflow-x: scroll;">
               <h2 class="section-title">To-Do this week</h2>
               <table class="to-do-table">
                 <tr class="days-of-week">
