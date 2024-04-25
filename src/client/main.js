@@ -140,7 +140,7 @@ const store = new Store("myDatabase"); // Initialize the Store class with a data
  */
 const addClasses = () => {
   loadingElement.textContent = "Loading classes...";
-  console.log("HERE!")
+  // console.log("HERE!")
   setTimeout(() => {
     courseInfo.forEach((course) => {
       let courseElem = document.createElement("div");
@@ -389,6 +389,106 @@ function addAssignmentToCalendar(courseName, dayOfWeek, assignmentDescription) {
   }
 }
 
+// code for monthly calendar
+
+const calendarButton = document.getElementById("nav-calendar");
+const calendarView = document.getElementById("calendar-container");
+
+function populateCalendar(year, month) {
+  console.log("working");
+  const calendarBody = document.getElementById("calendar-body");
+  calendarBody.innerHTML = "";
+
+  const daysInMonth = new Date(year, month + 1, 0).getDate();
+  const firstDay = new Date(year, month, 1).getDay();
+
+  let date = 1;
+  for (let i = 0; i < 6; i++) {
+    const row = document.createElement("tr");
+
+    for (let j = 0; j < 7; j++) {
+      if (i === 0 && j < firstDay) {
+        row.appendChild(document.createElement("td"));
+      } else if (date > daysInMonth) {
+        break; 
+      } else {
+        let cellDate = new Date(year, month, date);
+        row.appendChild(generateDayCell(cellDate));
+        date++; 
+      }
+    }
+
+    calendarBody.appendChild(row);
+
+    if (date > daysInMonth) {
+      break; 
+    }
+  }
+}
+
+function isSpecialDay(date) {
+  // assume a special day is today
+  return date.toDateString() === new Date().toDateString();
+}
+
+function generateDayCell(date) {
+  const dayCell = document.createElement('td');
+  dayCell.textContent = date.getDate();
+
+  // dummy day
+  if (date.getDate() === 1 || date.getDate() === 15 || date.getDate() === 17) {
+    console.log("date is red");
+    dayCell.classList.add('highlight-day');
+  }
+
+  if (isSpecialDay(date)) {
+    dayCell.classList.add('today-day');
+  }
+
+  // assume a special day is an exam day
+  const dayString = date.toLocaleDateString('en-US');
+  calendarInfo.forEach(course => {
+    Object.entries(course).forEach(([day, tasks]) => {
+      if (tasks.includes(dayString)) {
+        dayCell.classList.add('exam-day');
+      }
+    });
+  });
+
+  return dayCell;
+}
+
+// function generateDayCell(date) {
+//   const dayCell = document.createElement('td');
+//   dayCell.textContent = date.getDate();
+
+//   if (isSpecialDay(date)) {
+//     dayCell.classList.add('highlight-day');
+//   }
+
+//   const dayOfWeek = date.toLocaleString('en-us', { weekday: 'long' }).toLowerCase();
+
+//   calendarInfo.forEach(course => {
+//     const assignments = course[dayOfWeek];
+//     if (assignments && assignments.length > 0) {
+//       dayCell.classList.add('has-assignment');
+//       let assignmentsList = document.createElement('ul');
+//       assignments.forEach(assignment => {
+//         let listItem = document.createElement('li');
+//         listItem.textContent = assignment; 
+//         assignmentsList.appendChild(listItem); 
+//       });
+//       dayCell.appendChild(assignmentsList); 
+//     }
+//   });
+
+//   return dayCell;
+// }
+
+
+
+populateCalendar(2024, 3);
+
 /**
  * Event listener setup for multi-views
  *
@@ -405,7 +505,7 @@ document.addEventListener("DOMContentLoaded", () => {
     .addEventListener("click", () => navigate("assignment-view"));
   document
     .getElementById("nav-calendar")
-    .addEventListener("click", () => navigate("#calendar-view"));
+    .addEventListener("click", () => navigate("calendar-view"));
 
   // Initialize with the home view
   navigate("home-view");
@@ -440,6 +540,23 @@ classHomeButton.addEventListener("click", () => navigate("class-view"));
 classNavReview.addEventListener("click", () => {
   populateClassReview(currCourse);
 });
+
+// calendarButton.addEventListener("click", () => {
+//   populateCalendar(2024, 3);
+// });
+
+document.addEventListener("DOMContentLoaded", function () {
+  const calendarButton = document.getElementById("nav-calendar");
+  const calendarView = document.getElementById("calendar-container");
+
+  calendarButton.addEventListener("click", function () {
+    document.querySelectorAll('.view').forEach(view => {
+          view.style.display = 'none';
+      });
+      calendarView.style.display = 'block';
+  });
+});
+
 
 /**
  * Event listener setup to handle form submission for adding assignments to the calendar.

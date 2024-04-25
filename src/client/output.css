@@ -1444,6 +1444,78 @@ video {
   border-color: #800000;
 }
 
+.calendar-header {
+  font-size: 1.5rem; 
+  text-align: center;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+#calendar-container {
+  display: flex; 
+  justify-content: center; 
+  align-items: center;
+  min-height: 100vh; 
+}
+
+#calendar-view {
+  width: 80%; 
+  max-width: 1200px; 
+  height: 80%;
+  max-height: 1200px;
+  margin: auto; 
+  overflow: auto; 
+}
+
+.table-header {
+  background-color: #e2e8f0; 
+  color: #000; 
+  padding: 0.5rem; 
+  border: 1px solid #000; 
+}
+
+#calendar-table {
+  width: 100%; 
+  margin-top: 1rem; 
+  border-collapse: collapse; 
+  table-layout: fixed; 
+}
+
+#calendar-table th, 
+#calendar-table td {
+  border: 1px solid #000;
+  text-align: center;
+  padding: 10px;
+  vertical-align: middle;
+}
+
+#calendar-table th {
+  background-color: #e2e8f0;
+  color: #000; 
+}
+
+#calendar-table tr:nth-child(even) td {
+  background-color: #f8fafc; 
+}
+
+#calendar-table tr:nth-child(odd) td {
+  background-color: #ffffff; 
+}
+
+/* .highlight-day {
+  background-color: #ab2909;
+} */
+
+#calendar-table td.highlight-day {
+  background-color: #ab2909 !important;
+  color:white;
+}
+
+#calendar-table td.today-day {
+  background-color: #c84e4e !important;
+  color:black;
+}
+
 
 @media (max-width: 768px) {
   .add-assignment-form {
