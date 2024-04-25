@@ -1,4 +1,4 @@
-import PouchDBManager from "pouchdb"
+import PouchDBManager from "./db.js";
 
 class Store {
   /**
