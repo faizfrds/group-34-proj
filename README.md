@@ -10,7 +10,7 @@ Academix is a tool designed by students for students. It aims to facilitate effe
 
 2. **Individual Class Page**:
    - Offers detailed information and resources for each class.
-   - Allows students to track assignments, review materials, and ultimatley monitor their progress.
+   - Allows students to track assignments, review materials, and ultimately monitor their progress.
 
 3. **Assignment Management**:
    - Includes a section to add assignments and their due dates
@@ -45,16 +45,16 @@ Academix is a tool designed by students for students. It aims to facilitate effe
 
 To utilize Academix effectively:
 1. Access the Students dashboard to get an overview of all classes.
-2. Navigate to the Individual Class Page by clicking on the class in the dashboard, then you will be preseneted with that class's specific data 
+2. Navigate to the Individual Class Page by clicking on the class in the dashboard, then you will be presented with that class's specific data 
 3. Use the Add Assignment button to add assignments and their due dates.
-5. Explore the Calendar View to visualize assignment due dates and allows the user to plan ahead efficiently.
-6. And, at anytime you want to return to the home page of the class, simply click the Class Home button, and if you want to return to the student dashboard click the dashboard button.
+5. Explore the Calendar View to visualize assignment due dates and allow the user to plan ahead efficiently.
+6. And, at any time you want to return to the class's home page, simply click the Class Home button, and if you're going to return to the student dashboard click the dashboard button.
 
 ## Development Setup
 
 1. Firstly, clone the repository to your local machine.
 2. Then, open a new terminal and run "npm install"
-3. Next, in the terminal run "npm run milestone-02", this will launch the webistes server and automatically bring you to it.
+3. Next, in the terminal run "npm run milestone-02", this will launch the website's server and automatically bring you to it.
 4. Now, explore different features and functionalities to understand how Academix works.
 
 ## Dependencies
