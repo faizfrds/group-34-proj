@@ -641,12 +641,16 @@ video {
   color: white;
 }
 
-.almost-there {
+.almostthere {
   background-color: #facc15; /* Yellow-400 */
 }
 
 .beginner {
   background-color: #ef4444; /* Red-500 */
+}
+
+.mastered{
+  background-color: green;
 }
 
 
@@ -1388,44 +1392,6 @@ video {
   --tw-shadow: var(--tw-shadow-colored);
 }
 
-@media (min-width: 640px) {
-  .sm\:flex-col {
-    flex-direction: column;
-  }
-
-  .sm\:justify-between {
-    justify-content: space-between;
-  }
-}
-
-@media (min-width: 768px) {
-  .md\:sticky {
-    position: sticky;
-  }
-
-  .md\:flex {
-    display: flex;
-  }
-
-  .md\:hidden {
-    display: none;
-  }
-
-  .md\:grid-cols-3 {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
-}
-
-@media (min-width: 1024px) {
-  .lg\:grid-cols-4 {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-  }
-
-  .lg\:flex-row {
-    flex-direction: row;
-  }
-}
-
 /* Style for the Add Assignment container */
 .add-assignment-container {
   display: flex;
@@ -1483,9 +1449,47 @@ video {
   .add-assignment-form {
     width: 90%;
   }
-  
+
   .add-assignment-container {
     height: auto;
     padding: 10px;
+  }
+}
+
+@media (min-width: 640px) {
+  .sm\:flex-col {
+    flex-direction: column;
+  }
+
+  .sm\:justify-between {
+    justify-content: space-between;
+  }
+}
+
+@media (min-width: 768px) {
+  .md\:sticky {
+    position: sticky;
+  }
+
+  .md\:flex {
+    display: flex;
+  }
+
+  .md\:hidden {
+    display: none;
+  }
+
+  .md\:grid-cols-3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1024px) {
+  .lg\:grid-cols-4 {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .lg\:flex-row {
+    flex-direction: row;
   }
 }
