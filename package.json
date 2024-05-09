@@ -30,6 +30,7 @@
   "scripts": {
     "milestone-01": "http-server src/docs/milestone-01 -p 3001 -c-1 -o -s",
     "milestone-02": "http-server src/client -p 3000 -c-1 -o -s",
+    "start": "http-server src/client -p 3000 -c-1 -o -s",
     "validate": "html-validate src/**/*.html",
     "prettier": "prettier src —write"
   },
@@ -38,5 +39,8 @@
     "http-server": "^14.1.1",
     "prettier": "^3.2.5",
     "tailwindcss": "^3.4.3"
+  },
+  "dependencies": {
+    "express": "^4.19.2"
   }
 }
