@@ -20,53 +20,53 @@ const courseInfo = [
 const calendarInfo = [
   {
     class: "CS220",
-    monday: ["Assignment 1", "Lab Report"],
-    tuesday: ["Homework 1"],
-    wednesday: ["Quiz 1"],
-    thursday: ["Project Proposal", "Reading Assignment"],
-    friday: ["Group Project Meeting"],
+    monday: [],
+    tuesday: [],
+    wednesday: [],
+    thursday: [],
+    friday: [],
     saturday: [],
-    sunday: ["Research Paper"],
+    sunday: [],
   },
   {
     class: "CS230",
-    monday: ["Lab Report", "Assignment 1"],
+    monday: [],
     tuesday: [],
-    wednesday: ["Homework 1", "Quiz 1"],
-    thursday: ["Group Discussion"],
+    wednesday: [],
+    thursday: [],
     friday: [],
-    saturday: ["Project Presentation"],
+    saturday: [],
     sunday: [],
   },
   {
     class: "CS240",
-    monday: ["Quiz 1"],
-    tuesday: ["Lab Report", "Assignment 1"],
-    wednesday: ["Homework 1"],
-    thursday: ["Project Proposal", "Reading Assignment"],
-    friday: ["Group Project Meeting"],
+    monday: [],
+    tuesday: [],
+    wednesday: [],
+    thursday: [],
+    friday: [],
     saturday: [],
-    sunday: ["Research Paper"],
+    sunday: [],
   },
   {
     class: "CS250",
-    monday: ["Group Discussion"],
+    monday: [],
     tuesday: [],
-    wednesday: ["Lab Report", "Assignment 1"],
-    thursday: ["Project Presentation"],
-    friday: ["Quiz 1"],
+    wednesday: [],
+    thursday: [],
+    friday: [],
     saturday: [],
-    sunday: ["Homework 1"],
+    sunday: [],
   },
   {
     class: "MATH235",
-    monday: ["Quiz 1"],
-    tuesday: ["Lab Report", "Assignment 1"],
+    monday: [],
+    tuesday: [],
     wednesday: [],
-    thursday: ["Project Proposal", "Reading Assignment"],
+    thursday: [],
     friday: [],
-    saturday: ["Group Project Meeting"],
-    sunday: ["Research Paper"],
+    saturday: [],
+    sunday: [],
   },
 ];
 
@@ -103,7 +103,7 @@ const reviewInfo = [
   },
 ];
 
-import Store from "./store.js";
+// import Store from "./store.js";
 
 //Code for running dashboard and accessing classes
 const dashboard = document.getElementById("class-dashboard");
@@ -131,7 +131,7 @@ function navigate(viewId) {
   document.getElementById(viewId).style.display = "block";
 }
 
-const store = new Store("myDatabase"); // Initialize the Store class with a database name
+// const store = new Store("myDatabase"); // Initialize the Store class with a database name
 
 /**
  * Adds classes to the dashboard by creating elements and appending them to the dashboard.
@@ -141,51 +141,51 @@ const store = new Store("myDatabase"); // Initialize the Store class with a data
 const addClasses = () => {
   loadingElement.textContent = "Loading classes...";
   // console.log("HERE!")
-  setTimeout(() => {
-    courseInfo.forEach((course) => {
-      let courseElem = document.createElement("div");
-      courseElem.className =
-        "bg-blue-100 hover:bg-blue-200 hover:cursor-pointer hover:shadow-xl hover:shadow-zinc-400 transition p-4 m-5 text-center rounded-md";
+  // setTimeout(() => {
+  courseInfo.forEach((course) => {
+    let courseElem = document.createElement("div");
+    courseElem.className =
+      "bg-blue-100 hover:bg-blue-200 hover:cursor-pointer hover:shadow-xl hover:shadow-zinc-400 transition p-4 m-5 text-center rounded-md";
 
-      let namePic = document.createElement("div");
-      namePic.className = "justify-center flex flex-col text-center";
+    let namePic = document.createElement("div");
+    namePic.className = "justify-center flex flex-col text-center";
 
-      let courseName = document.createElement("p");
-      courseName.className = "text-lg font-semibold";
-      courseName.textContent = course.name;
+    let courseName = document.createElement("p");
+    courseName.className = "text-lg font-semibold";
+    courseName.textContent = course.name;
 
-      let picContainer = document.createElement("div");
-      picContainer.className = "rounded-full m-4 justify-center flex";
-      let pic = document.createElement("img");
-      pic.src = `images/${course.name}.png`;
-      pic.height = "400";
-      pic.width = "400";
-      pic.style =
-        "border:2px solid black; margin-top: 10px; margin-bottom:10px; border-radius:10px";
-      picContainer.appendChild(pic);
+    let picContainer = document.createElement("div");
+    picContainer.className = "rounded-full m-4 justify-center flex";
+    let pic = document.createElement("img");
+    pic.src = `images/${course.name}.png`;
+    pic.height = "400";
+    pic.width = "400";
+    pic.style =
+      "border:2px solid black; margin-top: 10px; margin-bottom:10px; border-radius:10px";
+    picContainer.appendChild(pic);
 
-      namePic.appendChild(picContainer);
-      namePic.appendChild(courseName);
+    namePic.appendChild(picContainer);
+    namePic.appendChild(courseName);
 
-      courseElem.appendChild(namePic);
+    courseElem.appendChild(namePic);
 
-      // Adds a click event listener to each course element
-      courseElem.addEventListener("click", async () => {
-        currCourse = course;
-        const currCourseName = course.name;
-        console.log("course clicked was", currCourseName);
-        await populateClass(course); // Call populateClass instead of your previous code
-        updateCurrentClassName(course.name); // Update the class name in the navbar
-        classNavReview.classList.remove("hidden");
-        classHomeButton.classList.remove("hidden");
-        navigate("class-view");
-      });
-
-      dashboard.appendChild(courseElem);
-      loadingElement.textContent = "";
-      loadingElement.className = "";
+    // Adds a click event listener to each course element
+    courseElem.addEventListener("click", async () => {
+      currCourse = course;
+      const currCourseName = course.name;
+      console.log("course clicked was", currCourseName);
+      updateCurrentClassName(course.name); // Update the class name in the navbar
+      classNavReview.classList.remove("hidden");
+      classHomeButton.classList.remove("hidden");
+      await populateClass(course); // Call populateClass instead of your previous code
+      navigate("class-view");
     });
-  }, Math.random() * 2000);
+
+    dashboard.appendChild(courseElem);
+    loadingElement.textContent = "";
+    loadingElement.className = "";
+  });
+  // }, Math.random() * 2000);
 };
 
 addClasses();
@@ -200,7 +200,6 @@ const updateCurrentClassName = (className) => {
   currentClassNameElement.textContent = ": " + className; // Set the class name
 };
 
-
 /**
  * Populating the class using data from pouchdb
  *
@@ -208,44 +207,54 @@ const updateCurrentClassName = (className) => {
  * @returns {void}
  */
 const populateClass = async (course) => {
-  let courseToDoData;
-  let courseReviewData;
+  // Fetch using HTTP method frm POUCHDB
+  const isDataInPouchDB = await fetch(
+    `http://127.0.0.1:3000/read?name=${course.name}`,
+    { method: "GET" }
+  );
 
-  // Check if class data is saved in PouchDB
-  const isDataInPouchDB = await store.getData(course.name);
-  if (isDataInPouchDB) {
-    console.log(`Loading ${course.name} data from PouchDB.`);
-    courseToDoData = isDataInPouchDB.toDoData;
-    courseReviewData = isDataInPouchDB.reviewData;
-    displayClassData(courseToDoData, courseReviewData);
-  } else {
-    // Check if class data is saved in local storage
-    const isDataInLocalStorage = await store.getData(course.name);
-    if (isDataInLocalStorage) {
-      console.log(`Loading ${course.name} data from local storage.`);
-      courseToDoData = isDataInLocalStorage.toDoData;
-      courseReviewData = isDataInLocalStorage.reviewData;
-      displayClassData(courseToDoData, courseReviewData);
-    } else {
-      // Data not in PouchDB or local storage, generate it
-      console.log(`Generating data for ${course.name}.`);
-      courseToDoData = calendarInfo.find((c) => c.class === course.name);
-      courseReviewData = reviewInfo.find((c) => c.class === course.name);
+  // if (isDataInPouchDB.status(404))
+  const data = await (await isDataInPouchDB).text();
 
-      // Save the generated data to PouchDB and local storage
-      await store.saveData(course.name, {
-        toDoData: courseToDoData,
-        reviewData: courseReviewData,
-      });
+  const parsed = JSON.parse(data);
+  console.log("PARSED: ", parsed);
 
-      displayClassData(courseToDoData, courseReviewData);
-    }
+  let calendar = calendarInfo.find((name) => name.class === course.name); //finding the matching course in the calendar
+
+  //checking to see if all days are empty in the calendar
+  let emptyCalendar = [
+    "monday",
+    "tuesday",
+    "wednesday",
+    "thursday",
+    "friday",
+    "saturday",
+    "sunday",
+  ].every((day) => calendar[day].length === 0);
+
+  //if parsing is not empty but the calendar is empty, then add the existing data from PouchDB
+  if (parsed && emptyCalendar) {
+    console.log("IN PARSING");
+    parsed.map((data) => {
+      console.log(data.dayOfWeek, data.assignmentDescription);
+      addAssignmentToCalendar(
+        course.name,
+        data.dayOfWeek,
+        data.assignmentDescription
+      );
+      console.log("CALEN AFTER PARSING: ", calendar);
+    });
   }
+
+  //display class data fetched from db. Some may give 404 error when empty.
+  displayClassData(
+    calendarInfo.find((name) => name.class === course.name),
+    reviewInfo.find((name) => name.class === course.name)
+  );
 };
 
-
 /**
- * Displaying class infromation 
+ * Displaying class infromation
  *
  * @param {string} courseToDoData -  ToDo list data of the course
  * @param {string} courseReviewData -  Review data of the course
@@ -262,9 +271,12 @@ const displayClassData = (courseToDoData, courseReviewData) => {
     "saturday",
     "sunday",
   ];
+
+  console.log("display class data", courseToDoData);
   daysOfWeek.forEach((day) => {
-    const assignments = courseToDoData[day];
     const toDoElement = document.getElementById(`${day}-tasks`);
+    toDoElement.innerHTML = "";
+    const assignments = courseToDoData[day];
     if (assignments.length > 0) {
       toDoElement.innerHTML = assignments.join("<br>");
     }
@@ -304,7 +316,14 @@ const displayClassData = (courseToDoData, courseReviewData) => {
  */
 const populateClassReview = async (course) => {
   // Check if review data is saved in local storage or PouchDB
-  const localReviewData = await store.getData(course.name);
+
+  // const localReviewData = await store.getData(course.name);
+  const localReviewData = await fetch(
+    `http://127.0.0.1:3000/read?name=${course.name}`,
+    {
+      method: "GET",
+    }
+  );
   if (localReviewData && localReviewData.reviewData) {
     // If review data is found in local storage or PouchDB, use it
     displayReviewData(localReviewData.reviewData);
@@ -377,19 +396,20 @@ populateCourseSelect();
  * @returns {void}
  */
 function addAssignmentToCalendar(courseName, dayOfWeek, assignmentDescription) {
+  console.log(courseName);
   const courseCalendar = calendarInfo.find(
     (course) => course.class === courseName
   );
+  console.log("CLEN: ", courseCalendar);
   if (courseCalendar) {
     if (courseCalendar[dayOfWeek]) {
       courseCalendar[dayOfWeek].push(assignmentDescription);
+      // displayClassData(courseCalendar)
     } else {
       courseCalendar[dayOfWeek] = [assignmentDescription];
     }
   }
 }
-
-// code for monthly calendar
 
 const calendarButton = document.getElementById("nav-calendar");
 const calendarView = document.getElementById("calendar-container");
@@ -410,18 +430,18 @@ function populateCalendar(year, month) {
       if (i === 0 && j < firstDay) {
         row.appendChild(document.createElement("td"));
       } else if (date > daysInMonth) {
-        break; 
+        break;
       } else {
         let cellDate = new Date(year, month, date);
         row.appendChild(generateDayCell(cellDate));
-        date++; 
+        date++;
       }
     }
 
     calendarBody.appendChild(row);
 
     if (date > daysInMonth) {
-      break; 
+      break;
     }
   }
 }
@@ -432,25 +452,25 @@ function isSpecialDay(date) {
 }
 
 function generateDayCell(date) {
-  const dayCell = document.createElement('td');
+  const dayCell = document.createElement("td");
   dayCell.textContent = date.getDate();
 
   // dummy day
   if (date.getDate() === 1 || date.getDate() === 15 || date.getDate() === 17) {
     console.log("date is red");
-    dayCell.classList.add('highlight-day');
+    dayCell.classList.add("highlight-day");
   }
 
   if (isSpecialDay(date)) {
-    dayCell.classList.add('today-day');
+    dayCell.classList.add("today-day");
   }
 
   // assume a special day is an exam day
-  const dayString = date.toLocaleDateString('en-US');
-  calendarInfo.forEach(course => {
+  const dayString = date.toLocaleDateString("en-US");
+  calendarInfo.forEach((course) => {
     Object.entries(course).forEach(([day, tasks]) => {
       if (tasks.includes(dayString)) {
-        dayCell.classList.add('exam-day');
+        dayCell.classList.add("exam-day");
       }
     });
   });
@@ -475,17 +495,15 @@ function generateDayCell(date) {
 //       let assignmentsList = document.createElement('ul');
 //       assignments.forEach(assignment => {
 //         let listItem = document.createElement('li');
-//         listItem.textContent = assignment; 
-//         assignmentsList.appendChild(listItem); 
+//         listItem.textContent = assignment;
+//         assignmentsList.appendChild(listItem);
 //       });
-//       dayCell.appendChild(assignmentsList); 
+//       dayCell.appendChild(assignmentsList);
 //     }
 //   });
 
 //   return dayCell;
 // }
-
-
 
 populateCalendar(2024, 3);
 
@@ -550,13 +568,12 @@ document.addEventListener("DOMContentLoaded", function () {
   const calendarView = document.getElementById("calendar-container");
 
   calendarButton.addEventListener("click", function () {
-    document.querySelectorAll('.view').forEach(view => {
-          view.style.display = 'none';
-      });
-      calendarView.style.display = 'block';
+    document.querySelectorAll(".view").forEach((view) => {
+      view.style.display = "none";
+    });
+    calendarView.style.display = "block";
   });
 });
-
 
 /**
  * Event listener setup to handle form submission for adding assignments to the calendar.
@@ -568,13 +585,43 @@ document.addEventListener("DOMContentLoaded", function () {
 document
   .getElementById("add-assignment-form")
   .addEventListener("submit", (event) => {
+    addAssignment();
     event.preventDefault();
-    const courseName = document.getElementById("course-name-input").value;
-    const dayOfWeek = document.getElementById("day-of-week-input").value;
-    const assignmentDescription = document.getElementById(
-      "assignment-description-input"
-    ).value;
-    addAssignmentToCalendar(courseName, dayOfWeek, assignmentDescription);
-    document.getElementById("add-assignment-form").reset();
-    alert("Assignment added successfully!");
   });
+
+//http method for creating new assignmnts
+async function addAssignment() {
+  const courseName = document.getElementById("course-name-input").value;
+  const dayOfWeek = document.getElementById("day-of-week-input").value;
+  const assignmentDescription = document.getElementById(
+    "assignment-description-input"
+  ).value;
+
+  const obj = {
+    dayOfWeek: dayOfWeek,
+    assignmentDescription: assignmentDescription,
+  };
+
+  const encoded = encodeURIComponent(JSON.stringify(obj));
+  const read = await fetch(`http://127.0.0.1:3000/read?name=${courseName}`, {
+    method: "GET",
+  });
+  const data = await (await read).text();
+  const parsed = JSON.parse(data);
+
+  //if there is already a local storage for the course, update it. If not, create it.
+  if (parsed !== null) {
+    await fetch(
+      `http://127.0.0.1:3000/update?name=${courseName}&data=${encoded}`,
+      { method: "PUT" }
+    );
+  } else {
+    await fetch(
+      `http://127.0.0.1:3000/create?name=${courseName}&data=${encoded}`,
+      { method: "POST" }
+    );
+  }
+  addAssignmentToCalendar(courseName, dayOfWeek, assignmentDescription);
+  document.getElementById("add-assignment-form").reset();
+  alert("Assignment added successfully!");
+}
