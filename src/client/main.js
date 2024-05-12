@@ -207,50 +207,33 @@ const updateCurrentClassName = (className) => {
  * @returns {void}
  */
 const populateClass = async (course) => {
-  // Fetch using HTTP method frm POUCHDB
-  const isDataInPouchDB = await fetch(
-    `http://127.0.0.1:3000/read?name=${course.name}`,
-    { method: "GET" }
-  );
+  try {
+    let data = localStorage.getItem(course.name);
+    if (data) {
+      console.log("Using cached data for", course.name);
+      data = JSON.parse(data);
+    } else {
+      console.log("Fetching data from server for", course.name);
+      const response = await fetch(`/read?name=${course.name}`);
+      if (!response.ok) {
+        throw new Error('Failed to fetch class data');
+      }
+      data = await response.json();
+      localStorage.setItem(course.name, JSON.stringify(data));
+    }
+    
+    console.log("Fetched class data:", data); // Log fetched data
+    let calendar = {}; // Initialize an empty calendar
+    if (data) {
+      calendar = data;
+    } else {
+      console.log("No data available for", course.name);
+    }
 
-  // if (isDataInPouchDB.status(404))
-  const data = await (await isDataInPouchDB).text();
-
-  const parsed = JSON.parse(data);
-  console.log("PARSED: ", parsed);
-
-  let calendar = calendarInfo.find((name) => name.class === course.name); //finding the matching course in the calendar
-
-  //checking to see if all days are empty in the calendar
-  let emptyCalendar = [
-    "monday",
-    "tuesday",
-    "wednesday",
-    "thursday",
-    "friday",
-    "saturday",
-    "sunday",
-  ].every((day) => calendar[day].length === 0);
-
-  //if parsing is not empty but the calendar is empty, then add the existing data from PouchDB
-  if (parsed && emptyCalendar) {
-    console.log("IN PARSING");
-    parsed.map((data) => {
-      console.log(data.dayOfWeek, data.assignmentDescription);
-      addAssignmentToCalendar(
-        course.name,
-        data.dayOfWeek,
-        data.assignmentDescription
-      );
-      console.log("CALEN AFTER PARSING: ", calendar);
-    });
+    displayClassData(calendar, reviewInfo.find(r => r.class === course.name));
+  } catch (err) {
+    console.error('Error fetching class data:', err);
   }
-
-  //display class data fetched from db. Some may give 404 error when empty.
-  displayClassData(
-    calendarInfo.find((name) => name.class === course.name),
-    reviewInfo.find((name) => name.class === course.name)
-  );
 };
 
 /**
@@ -277,7 +260,7 @@ const displayClassData = (courseToDoData, courseReviewData) => {
     const toDoElement = document.getElementById(`${day}-tasks`);
     toDoElement.innerHTML = "";
     const assignments = courseToDoData[day];
-    if (assignments.length > 0) {
+    if (assignments && assignments.length > 0) { // Check if assignments is defined
       toDoElement.innerHTML = assignments.join("<br>");
     }
   });
@@ -307,6 +290,7 @@ const displayClassData = (courseToDoData, courseReviewData) => {
     }
   });
 };
+
 
 /**
  * Displaying class review information
