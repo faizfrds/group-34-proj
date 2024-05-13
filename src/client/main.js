@@ -201,9 +201,10 @@ const updateCurrentClassName = (className) => {
 };
 
 /**
- * Populating the class using data from pouchdb
- *
- * @param {string} course - The course name
+ * Populates the class using data from PouchDB or the server
+ * 
+ * @param {Object} course - The course object containing the course name
+ * @param {string} course.name - The name of the course
  * @returns {void}
  */
 const populateClass = async (course) => {
@@ -293,9 +294,12 @@ const displayClassData = (courseToDoData, courseReviewData) => {
 
 
 /**
- * Displaying class review information
+ * Populates and displays class review information for a specified course. 
+ * It first checks if review data is available in local storage. If not, it fetches 
+ * the data from the server and stores it locally for future use.
  *
- * @param {string} courseToDoData -  The selected course to review
+ * @param {Object} course - The course object containing the course name.
+ * @param {string} course.name - The name of the course.
  * @returns {void}
  */
 const populateClassReview = async (course) => {
