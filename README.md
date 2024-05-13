@@ -22,7 +22,7 @@ Academix is a tool designed by students for students. It aims to facilitate effe
 
 ## Project Structure
 
-#Client Side Code
+## Client Side Code
 
 ### `index.html`:
 
@@ -36,7 +36,7 @@ Academix is a tool designed by students for students. It aims to facilitate effe
 - Manages data retrieval and storage using the Store class.
 - Sets up event listeners for navigation and form submission.
 
-#Server Side Code
+## Server Side Code
 
 ### `db.js`:
 
