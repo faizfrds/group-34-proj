@@ -69,7 +69,7 @@ To utilize Academix effectively:
 
 1. Clone the repository to your local machine.
 2. Open a new terminal and run `npm install`.
-3. Run `npm run milestone-03` in the terminal to launch the website's server and automatically open it in your browser.
+3. Run `npm start milestone-03` in the terminal to launch the website's server and automatically open it in your browser.
 4. Explore different features and functionalities to understand how Academix works.
 
 ## Dependencies
