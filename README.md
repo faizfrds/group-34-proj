@@ -78,6 +78,6 @@ Academix relies on the following technologies:
 
 - **Express.js**: For building the server-side logic and handling HTTP requests.
 - **PouchDB**: For client-side database operations.
-- **Tailwind CSS**: For styling and responsive design
+- **Tailwind CSS**: For styling and responsive design.
 
 
